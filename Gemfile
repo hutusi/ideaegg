@@ -40,3 +40,8 @@ gem 'spring',        group: :development
 
 # Html template
 gem 'slim-rails', '~> 2.1.5'
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.1.0'
+  gem 'factory_girl_rails', '~> 4.5.0'
+end
