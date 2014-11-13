@@ -1,0 +1,18 @@
+nav.navbar.navbar-default role="navigation"
+  .container
+    .navbar-header
+      button.navbar-toggle data-target=".navbar-collapse" data-toggle="collapse" type="button"
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      = link_to 'Ideaegg', root_path, class: 'navbar-brand'
+    .collapse.navbar-collapse#navbar
+      ul.nav.navbar-nav
+        li
+          = link_to 'Ideas', '#'
+        li
+          = link_to 'Pricks', '#'
+      ul.nav.navbar-nav.navbar-right
+        li
+          = link_to 'Sign in', '#'
