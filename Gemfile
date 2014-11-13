@@ -45,6 +45,9 @@ gem 'slim-rails', '~> 2.1.5'
 gem 'bootstrap-sass', '~> 3.3.0'
 gem 'autoprefixer-rails'
 
+# devise
+gem 'devise', '~> 3.4.1'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.1.0'
   gem 'factory_girl_rails', '~> 4.5.0'
