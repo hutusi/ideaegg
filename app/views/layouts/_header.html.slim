@@ -10,11 +10,13 @@ nav.navbar.navbar-default role="navigation"
     .collapse.navbar-collapse#navbar
       ul.nav.navbar-nav
         li
-          = link_to 'Ideas', '#'
+          = link_to 'Ideas', ideas_path
         li
           = link_to 'Pricks', '#'
       ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
+          li
+            = link_to fa_icon('pencil-square-o', text: 'New idea'), new_idea_path
           li
             = link_to fa_icon('user', text: current_user.username), edit_user_password_path
           li

@@ -5,7 +5,7 @@ class CreateIdeas < ActiveRecord::Migration
       t.text :description
       t.boolean :public, default: true
 
-      t.references :users
+      t.references :user
 
       t.timestamps
     end
