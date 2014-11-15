@@ -16,7 +16,9 @@ nav.navbar.navbar-default role="navigation"
       ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           li
-            = link_to 'Sign out', destroy_user_session_path, :method => :delete
+            = link_to fa_icon('user', text: current_user.username), edit_user_password_path
+          li
+            = link_to fa_icon('sign-out', text: 'Sign out'), destroy_user_session_path, :method => :delete
         - else
           li
-            = link_to 'Sign in', new_user_session_path
+            = link_to fa_icon('sign-in', text: 'Sign in'), new_user_session_path
