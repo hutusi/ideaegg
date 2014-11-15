@@ -3,5 +3,6 @@ class IdeasController < ApplicationController
   end
 
   def new
+    @idea = Idea.new
   end
 end
