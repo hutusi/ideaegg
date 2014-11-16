@@ -51,6 +51,9 @@ gem 'devise', '~> 3.4.1'
 # font awesome
 gem 'font-awesome-rails', '~> 4.2.0'
 
+# wysiwyg editor
+gem 'wysiwyg-rails', '~> 1.2.3'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.1.0'
   gem 'factory_girl_rails', '~> 4.5.0'
