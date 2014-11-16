@@ -52,7 +52,9 @@ gem 'devise', '~> 3.4.1'
 gem 'font-awesome-rails', '~> 4.2.0'
 
 # wysiwyg editor
-gem 'wysiwyg-rails', '~> 1.2.3'
+# This is the right gem to use summernote editor in Rails projects.
+gem 'summernote-rails'
+gem 'codemirror-rails'
 
 gem 'rails-timeago', '~> 2.0'
 
