@@ -3,5 +3,5 @@ class Idea < ActiveRecord::Base
 
   validates :user_id, presence: true
   validates :title, presence: true, length: { maximum: 140 }
-  validates :description, presence: true
+  validates :content, presence: true
 end
