@@ -1,6 +1,66 @@
 .idea-title-form {
-  border: 1px solid #252525;
+  // border: 1px solid #252525;
   height: 15px;
   font-size: 25px;
   font-weight: bold;
+}
+
+.idea-info {
+  border-right: 1px solid #73C0C0;
+  // border: 1px solid;
+  .idea-title {
+    padding: 1em;
+    // background-color: #E2E2E2;
+  }
+  .idea-content {
+    padding: 1em;
+    border-top: 1px solid #73C0C0;
+  }
+}
+
+.idea-meta {
+  background-color: #EEEEEE;
+
+  .author-block {
+    height: 150px;
+    border-bottom: 1px solid #73C0C0;
+
+    .author-avatar {
+      position: relative;
+      left: 1em;
+      top: 3em;
+
+      img {
+        height: 60;
+        width: 60px;
+        border-radius: 60px;
+      }
+    }
+
+    .author-info {
+      position: absolute;
+      left: 6em;
+      top: 3em;
+
+      padding: 1em;
+
+      .name {
+        font-size: 16px;
+      }
+
+      .publish {
+        font-size: 12px;
+        font-style: italic;
+        font-color: #949A9C
+      }
+    }
+  }
+
+  .idea-statistic {
+    //border-bottom: 1px solid #73C0C0;
+    padding: 1em;
+
+    .idea-vote {
+    }
+  }
 }

@@ -1,4 +1,18 @@
-.idea-title
-  h1=@idea.title
-.idea-content
-  p= @idea.content.html_safe
+.idea-info.col-sm-9
+  .idea-title
+    h1=@idea.title
+  .idea-content
+    p= @idea.content.html_safe
+.idea-meta.col-sm-3
+  .author-block
+    .author-avatar
+      = avatar_for @author, size: 80
+    .author-info
+      .name
+        = @author.username
+      .publish
+        | Published
+        = timeago_tag @idea.created_at, :nojs => true, :limit => 10.days.ago
+  .idea-statistic
+    .idea-vote
+      = like_button(@idea)

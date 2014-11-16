@@ -5,6 +5,7 @@ class IdeasController < ApplicationController
   end
 
   def show
+    @author = @idea.author
   end
 
   def new

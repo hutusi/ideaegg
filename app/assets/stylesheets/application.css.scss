@@ -6,3 +6,24 @@
 @import "login";
 @import "editor";
 @import "ideas";
+
+body {
+  background-color: #73C0C9;
+  font-family: 'Helvetica Neue', Helvetica,Arial, 'Hiragino Sans GB', sans-serif;
+  font-size: 15px;
+  padding-bottom: 1em;
+}
+
+main {
+  .container{
+    padding: 1em;
+    border: 1px solid #73C0C0;
+    max-width: 1150px;
+    vertical-align: middle;
+    background-color: #EEEEEE;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "PT Sans", Helvetica, Arial, sans-serif;
+}
