@@ -13,7 +13,7 @@
 }
 
 .idea-meta {
-  background-color: #EEEEEE;
+  //background-color: #EEEEEE;
 
   .author-block {
     height: 150px;
@@ -25,7 +25,7 @@
       top: 3em;
 
       img {
-        height: 60;
+        height: 60px;
         width: 60px;
         border-radius: 60px;
       }
@@ -85,7 +85,7 @@
 .idea-title-form {
   // border: 1px solid #252525;
   // height: 15px;
-  background-color: #EEEEEE;
+  //background-color: #EEEEEE;
   border: 1px solid #A9A9A9;
   border-radius: 0;
   font-size: 25px;
@@ -99,4 +99,62 @@
 
 .idea-content-form {
   border: 0px;
+}
+
+.ideas-block {
+  padding-left: 0.5em;
+  padding-right: 2em;
+  border-right: 1px solid #73C0C0;
+
+  .idea-item {
+    background-color: #F7F7F7;
+    height: 100px;
+    width: 400px;
+    margin: 0.4em 0;
+
+    &:hover {
+    background-color: #EEEEEE;
+  }
+
+    //padding-top: 1em;
+    //border: 1px solid #D0F7E7;
+
+    .author-avatar {
+
+      position: absolute;
+      left: 4em;
+      top: 2.5em;
+
+      img {
+        height: 40px;
+        width: 40px;
+        border-radius: 60px;
+      }
+    }
+
+    .idea-entry {
+      height: 30px;
+      width: 260px;
+
+      position: absolute;
+      left: 8em;
+      top: 2.5em;
+
+      a {
+        color: #808080;
+        text-decoration: none;
+      }
+
+      .entry {
+      }
+    }
+  }
+}
+
+.ideas-side-block {
+  padding: 1em;
+
+  .btn-submit-idea {
+    width: 100%;
+  }
 }

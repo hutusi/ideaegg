@@ -1,0 +1,16 @@
+.ideas-block.col-md-9
+  .row
+    - @ideas.each do |idea|
+      .col-md-6
+        .idea-item
+          .author-avatar
+            = avatar_for(idea.author, size: 40)
+          .idea-entry
+            = link_to idea, class: 'entry' do
+              .header= truncate(idea.title, length: 30)
+
+
+.ideas-side-block.col-md-3
+  .new-idea-button
+    = button_to new_idea_path, class: 'btn btn-primary btn-submit-idea', :method => :get do
+      = fa_icon('pencil-square-o lg', text: 'I have a new idea')

@@ -11,16 +11,14 @@ nav.navbar.navbar-inverse role="navigation"
       ul.nav.navbar-nav
         li
           = link_to 'Ideas', ideas_path
-        li
-          = link_to 'Pricks', '#'
       ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           li
-            = link_to fa_icon('pencil-square-o', text: 'New idea'), new_idea_path
+            = link_to fa_icon('pencil-square-o lg', text: 'New idea'), new_idea_path
           li
-            = link_to fa_icon('user', text: current_user.username), edit_user_password_path
+            = link_to fa_icon('user lg', text: current_user.username), edit_user_password_path
           li
-            = link_to fa_icon('sign-out', text: 'Sign out'), destroy_user_session_path, :method => :delete
+            = link_to fa_icon('sign-out lg', text: 'Sign out'), destroy_user_session_path, :method => :delete
         - else
           li
-            = link_to fa_icon('sign-in', text: 'Sign in'), new_user_session_path
+            = link_to fa_icon('sign-in lg', text: 'Sign in'), new_user_session_path
