@@ -8,6 +8,8 @@
           .idea-entry
             = link_to idea, class: 'entry' do
               .header= truncate(idea.title, length: 30)
+  .paginate
+    = paginate @ideas
 
 
 .ideas-side-block.col-md-3
