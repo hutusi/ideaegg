@@ -14,7 +14,7 @@ nav.navbar.navbar-inverse role="navigation"
       ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           li
-            = link_to fa_icon('pencil-square-o lg', text: 'New idea'), new_idea_path
+            = link_to fa_icon('pencil-square-o lg', text: 'New idea'), new_idea_path, method: :get
           li
             = link_to fa_icon('user lg', text: current_user.username), edit_user_password_path
           li

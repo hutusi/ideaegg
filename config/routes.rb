@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # root path
-  root 'home#index'
+  root 'ideas#index'
 
   devise_for :users
   resources :ideas
