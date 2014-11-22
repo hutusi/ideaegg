@@ -24,7 +24,7 @@
           li.active role='presentation'
             = link_to fa_icon('cubes', text: 'Ideas'), '#'
         .edit-or-follow.pull-right
-          - if current_user
+          - if current_user == @user
             = link_to fa_icon('pencil', text: 'Edit profile'), '#', class: 'btn btn-default'
       .user-info-block
         - if @show == 'ideas'

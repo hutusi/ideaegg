@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20141115124515) do
     t.datetime "updated_at"
     t.string   "username"
     t.string   "fullname"
+    t.integer  "ideas_count",            default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
