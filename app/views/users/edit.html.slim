@@ -1,0 +1,38 @@
+- provide(:title, 'Edit your profile')
+.row.user
+  .col-md-3
+    .vcard
+      .avatar-block
+        = link_to @user, class: 'avatar' do
+          = avatar_for(@user, size: 256)
+        h2.fullname= @user.fullname
+        .username= @user.username
+      .vcard-details
+        .vcard-detail
+          = fa_icon('clock-o', text: ' ')
+          span.join-label Joined on
+          span.join-date= @user.created_at.strftime('%b,%d %Y')
+  .col-md-9
+    .row.user-profile
+      .user-navs
+        ul.nav.nav-tabs role='tablist'
+          li.active role='presentation'
+            = link_to 'Personal profile', '#'
+      .user-profile-block
+        = form_for(@user, role: 'form', :html => {class: 'form-horizontal'}) do |f|
+          .form-group.profile-item
+            = f.label :username, class: "col-md-2 control-label profile-item-label"
+            .col-md-8
+              = f.text_field :username, class: "form-control profile-item-input"
+          .form-group.profile-item
+            = f.label :fullname, class: "col-md-2 control-label profile-item-label"
+            .col-md-8
+              = f.text_field :fullname, class: "form-control profile-item-input"
+          .form-group.profile-item
+            = f.label :email, class: "col-md-2 control-label profile-item-label"
+            .col-md-8
+              = f.email_field :email, class: "form-control profile-item-input"
+          .actions.form-group
+            .col-md-offset-2.col-md-8
+              = link_to 'Cancel', url_for(:back), class: 'btn btn-default btn-profile-cancel'
+              = f.submit "Save", class: "btn btn-danger btn-profile-save"

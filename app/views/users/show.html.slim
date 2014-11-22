@@ -25,7 +25,7 @@
             = link_to fa_icon('cubes', text: 'Ideas'), '#'
         .edit-or-follow.pull-right
           - if current_user == @user
-            = link_to fa_icon('pencil', text: 'Edit profile'), '#', class: 'btn btn-default'
+            = link_to fa_icon('pencil', text: 'Edit profile'), edit_user_path, class: 'btn btn-default'
       .user-info-block
         - if @show == 'ideas'
           .row

@@ -108,3 +108,24 @@
     }
   }
 }
+
+.user-profile {
+  .user-profile-block {
+    padding: 2em;
+  }
+
+  .profile-item-label {
+    font-size: 14px;
+    color: #666666;
+  }
+
+  .btn-profile-cancel {
+    width: 80px;
+  }
+
+  .btn-profile-save {
+    position: relative;
+    left: 1em;
+    width: 80px;
+  }
+}
