@@ -18,10 +18,24 @@
           | Ideas
 
   .col-md-9
-    .row
-      - if @show == 'ideas'
-        - @ideas.each do |idea|
-          .col-md-6
-            .idea-item
-              = link_to idea, class: 'entry' do
-                .header= truncate(idea.title, length: 30)
+    .row.user-info
+      .user-navs
+        ul.nav.nav-tabs role='tablist'
+          li.active role='presentation'
+            = link_to fa_icon('cubes', text: 'Ideas'), '#'
+        .edit-or-follow.pull-right
+          - if current_user
+            = link_to fa_icon('pencil', text: 'Edit profile'), '#', class: 'btn btn-default'
+      .user-info-block
+        - if @show == 'ideas'
+          .row
+            - @ideas.each do |idea|
+              .col-md-6
+                .idea-item
+                  .idea-logo
+                    = fa_icon('cube')
+                  .idea-entry
+                    = link_to idea, class: 'entry' do
+                      .header= truncate(idea.title, length: 30)
+            .paginate
+              = paginate @ideas

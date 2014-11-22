@@ -61,3 +61,50 @@
 
   }
 }
+
+.user-info {
+  padding-left: 2em;
+  padding-right: 2em;
+
+  .user-navs {
+    .edit-or-follow {
+      position: absolute;
+      right: 2em;
+      top: 0em;
+    }
+  }
+
+  .user-info-block {
+    padding-top: 0.5em;
+
+    .idea-item {
+      background-color: #F7F7F7;
+      height: 80px;
+      margin: 0.4em 0;
+
+      &:hover {
+        background-color: #EEEEEE;
+      }
+
+      .idea-logo {
+        position: absolute;
+        left: 4em;
+        top: 2.5em;
+      }
+
+      .idea-entry {
+        height: 30px;
+        width: 260px;
+
+        position: absolute;
+        left: 6.5em;
+        top: 2.5em;
+
+        a {
+          color: #808080;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
