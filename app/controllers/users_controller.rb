@@ -3,10 +3,10 @@ class UsersController < ApplicationController
 
   def show
   end
-  
+
   protected
 
     def get_user
-      @idea = User.find(params[:id])
+      @user = User.find(params[:id])
     end
 end

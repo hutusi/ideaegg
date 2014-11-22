@@ -1,0 +1,27 @@
+- provide(:title, @user.username)
+.row.user
+  .col-md-3
+    .vcard
+      .avatar-block
+        = link_to @user, class: 'avatar' do
+          = avatar_for(@user, size: 256)
+        h2.fullname= @user.fullname
+        .username= @user.username
+      .vcard-details
+        .vcard-detail
+          = fa_icon('clock-o', text: ' ')
+          span.join-label Joined on
+          span.join-date= @user.created_at.strftime('%b,%d %Y')
+      .vcard-stats
+        = link_to user_path(@user, :show => 'ideas'), class: 'vcard-stat' do
+          strong.vcard-stat-count= @user.ideas.count
+          | Ideas
+
+  .col-md-9
+    .row
+      - if @show == 'ideas'
+        - @ideas.each do |idea|
+          .col-md-6
+            .idea-item
+              = link_to idea, class: 'entry' do
+                .header= truncate(idea.title, length: 30)

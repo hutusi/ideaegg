@@ -1,3 +1,63 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.user {
+  .vcard {
+    .avatar-block {
+      padding-bottom: 0.5em;
+
+      .avatar {
+        img {
+          border-radius: $border-radius-large;
+        }
+      }
+
+      .fullname {
+        font-size: 1.7em;
+        font-weight: bold;
+      }
+
+      .username {
+        font-size: 1.2em;
+        color: #666666;
+      }
+    }
+
+    .vcard-details, .vcard-stats {
+      border-top: 1px solid #E6E6E6;
+      padding: 1.3em 0;
+    }
+
+    .vcard-detail {
+      .join-label {
+        padding-left: 0.4em;
+        padding-right: 0.3em;
+      }
+    }
+
+    .vcard-stats {
+      padding-bottom: 7em;
+      .vcard-stat {
+        @extend .text-center;
+        float: left;
+        width: 33.333%;
+        font-size: .7em;
+        margin: 0.3em 0;
+        color: #999999;
+        text-decoration: none;
+        &:hover {
+          color: #666666;
+        }
+        .vcard-stat-count {
+          display: block;
+          font-size: 28px;
+          font-weight: bold;
+          line-height: 1;
+          color: #212121;
+        }
+      }
+    }
+
+  }
+}
