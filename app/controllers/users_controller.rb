@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :get_user, only: [:show, :edit, :update]
+  before_action :get_user, only: [:show, :edit, :update, :follow, :unfollow]
 
   def show
     @ideas = @user.ideas.order('created_at DESC').page params[:page]
@@ -20,6 +20,24 @@ class UsersController < ApplicationController
         format.html { render action: 'edit' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def follow
+    respond_to do |format|
+      follower = User.find(params[:follower_id])
+      follower.follow!(@user)
+      format.html { redirect_to @user, notice: 'User was successfully updated.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def unfollow
+    respond_to do |format|
+      follower = User.find(params[:follower_id])
+      follower.unfollow!(@user)
+      format.html { redirect_to @user, notice: 'User was successfully updated.' }
+      format.json { head :no_content }
     end
   end
 
