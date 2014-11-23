@@ -20,4 +20,6 @@ class Idea < ActiveRecord::Base
   validates :content, presence: true
 
   paginates_per 8
+
+  acts_as_likeable
 end

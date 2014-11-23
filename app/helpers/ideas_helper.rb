@@ -7,8 +7,20 @@ module IdeasHelper
     return unless idea
     return if idea.destroyed?
 
-    like_label = fa_icon 'heart'
+    count = idea.likers(User).count.to_s
 
-    content_tag :span, raw(like_label)
+    if current_user.likes?(idea)
+      tag = fa_icon('heart', text: t('Liked')) + ' ' + content_tag(:span, count, class: 'badge')
+      link_to tag,
+           {:controller => "ideas", :action => "unlike", :liker_id => current_user.id, :id => idea.id },
+           method: :post,
+           class: 'btn btn-default like-button'
+    else
+      tag = fa_icon('heart-o', text: t('Like')) + ' ' + content_tag(:span, count, class: 'badge')
+      link_to tag,
+           {:controller => "ideas", :action => "like", :liker_id => current_user.id, :id => idea.id },
+           method: :post,
+           class: 'btn btn-default like-button'
+    end
   end
 end

@@ -9,6 +9,8 @@ module UsersHelper
   alias_method :avatar_for, :gravatar_for
 
   def follow_button(user)
+    return unless user
+
     if current_user.follows?(user)
     link_to fa_icon('male', text: 'Unfollow'),
             {:controller => "users", :action => "unfollow", :follower_id => current_user.id, :id => user.id },

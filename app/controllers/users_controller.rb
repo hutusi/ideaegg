@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       follower = User.find(params[:follower_id])
       follower.follow!(@user)
-      format.html { redirect_to @user, notice: 'User was successfully updated.' }
+      format.html { redirect_to @user, notice: 'Follow successfully.' }
       format.json { head :no_content }
     end
   end
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       follower = User.find(params[:follower_id])
       follower.unfollow!(@user)
-      format.html { redirect_to @user, notice: 'User was successfully updated.' }
+      format.html { redirect_to @user, notice: 'Unfollow successfully.' }
       format.json { head :no_content }
     end
   end

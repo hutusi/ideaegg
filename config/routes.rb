@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   devise_for :users
   resources :ideas
   resources :users, only: [:show, :edit, :update]
-  resources :follows, only: [:create, :destroy]
   post   'follow'   => 'users#follow'
   post   'unfollow'   => 'users#unfollow'
+  post   'like'   => 'ideas#like'
+  post   'unlike'   => 'ideas#unlike'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
