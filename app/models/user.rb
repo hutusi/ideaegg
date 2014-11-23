@@ -27,9 +27,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  acts_as_follower
-  acts_as_followable
-  
   attr_accessor :login
 
   validates :username,
@@ -48,11 +45,22 @@ class User < ActiveRecord::Base
   end
 
   def self.find_for_database_authentication(warden_conditions)
-      conditions = warden_conditions.dup
-      if login = conditions.delete(:login)
-        where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
-      else
-        where(conditions).first
-      end
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    else
+      where(conditions).first
     end
+  end
+
+  acts_as_follower
+  acts_as_followable
+
+  def all_followers
+    followers(User)
+  end
+
+  def all_followees
+    followees(User)
+  end
 end

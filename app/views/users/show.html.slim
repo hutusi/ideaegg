@@ -16,6 +16,12 @@
         = link_to user_path(@user, :show => 'ideas'), class: 'vcard-stat' do
           strong.vcard-stat-count= @user.ideas.count
           | Ideas
+        = link_to user_path(@user, :show => 'followers'), class: 'vcard-stat' do
+          strong.vcard-stat-count= @user.all_followers.count
+          | Followers
+        = link_to user_path(@user, :show => 'following'), class: 'vcard-stat' do
+          strong.vcard-stat-count= @user.all_followees.count
+          | Following
 
   .col-md-9
     .row.user-info
