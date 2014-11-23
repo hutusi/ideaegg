@@ -1,0 +1,7 @@
+.col-md-6
+  .idea-item
+    .idea-author-avatar
+      = link_to avatar_for(author, size: 45), author
+    .idea-entry
+      = link_to idea, class: 'entry' do
+        .header= truncate(idea.title, length: 30)

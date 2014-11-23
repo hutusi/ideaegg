@@ -67,4 +67,8 @@ class User < ActiveRecord::Base
   def all_followees
     followees(User)
   end
+
+  def all_likes
+    likeables(Idea)
+  end
 end

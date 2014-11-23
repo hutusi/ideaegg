@@ -22,4 +22,8 @@ class Idea < ActiveRecord::Base
   paginates_per 8
 
   acts_as_likeable
+
+  def all_likers
+    likers(User)
+  end
 end

@@ -13,9 +13,9 @@
           span.join-label Joined on
           span.join-date= @user.created_at.strftime('%b,%d %Y')
       .vcard-stats
-        = link_to user_path(@user, :show => 'ideas'), class: 'vcard-stat' do
-          strong.vcard-stat-count= @ideas.count
-          | Ideas
+        = link_to user_path(@user, :show => 'likes'), class: 'vcard-stat' do
+          strong.vcard-stat-count= @likes.count
+          | Likes
         = link_to user_path(@user, :show => 'followers'), class: 'vcard-stat' do
           strong.vcard-stat-count= @followers.count
           | Followers
@@ -25,28 +25,14 @@
 
   .col-md-9
     .row.user-info
-      .user-navs
-        ul.nav.nav-tabs role='tablist'
-          li.active role='presentation'
-            = link_to fa_icon('cubes', text: 'Ideas'), '#'
-        .edit-or-follow.pull-right
-          - if current_user == @user
-            = link_to fa_icon('pencil', text: 'Edit profile'), edit_user_path, class: 'btn btn-default'
-          - else
-            = follow_button @user
+      = render partial: 'nav'
       .user-info-block
-        - if @show == 'ideas'
+        - if @show == 'likes'
           .row
-            - @ideas.each do |idea|
-              .col-md-6
-                .idea-item
-                  .idea-logo
-                    = fa_icon('cube')
-                  .idea-entry
-                    = link_to idea, class: 'entry' do
-                      .header= truncate(idea.title, length: 30)
+            - @likes.each do |idea|
+              =render partial: 'idea_card', locals: {idea: idea, author: idea.author}
             .paginate
-              = paginate @ideas
+              = paginate @likes
         - elsif @show == 'followers'
           .row
             - @followers.each do |follower|
@@ -59,3 +45,9 @@
               = render partial: 'user_card', locals: {user: followee}
             .paginate
               = paginate @following
+        - else
+          .row
+            - @ideas.each do |idea|
+              =render partial: 'my_idea_card', locals: {idea: idea}
+            .paginate
+              = paginate @ideas

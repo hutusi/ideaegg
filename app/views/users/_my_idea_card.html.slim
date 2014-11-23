@@ -1,0 +1,7 @@
+.col-md-6
+  .idea-item
+    .idea-logo
+      = fa_icon('cube')
+    .idea-entry
+      = link_to idea, class: 'entry' do
+        .header= truncate(idea.title, length: 30)

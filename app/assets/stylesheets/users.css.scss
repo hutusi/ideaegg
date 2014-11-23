@@ -13,7 +13,7 @@
         }
       }
 
-      .fullname {
+      h2.fullname {
         font-size: 1.7em;
         font-weight: bold;
       }
@@ -105,6 +105,18 @@
           text-decoration: none;
         }
       }
+
+      .idea-author-avatar {
+        position: relative;
+        left: 2em;
+        top: 1.2em;
+
+        img {
+          height: 45px;
+          width: 45px;
+          border-radius: 60px;
+        }
+      }
     }
   }
 }
@@ -143,7 +155,7 @@
   .avatar {
     position: relative;
     left: 2em;
-    top: 1em;
+    top: 1.2em;
 
     img {
       height: 45px;
