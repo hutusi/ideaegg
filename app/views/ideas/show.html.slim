@@ -6,12 +6,12 @@
 .idea-meta.col-md-3
   .author-block
     .author-avatar
-      = avatar_for @author, size: 80
+      = link_to avatar_for(@author, size: 80), @author
     .author-info
       .name
-        = @author.username
+        = link_to @author.fullname, @author
       .publish
-        | Published
+        | Published&nbsp;
         = timeago_tag @idea.created_at, :nojs => true, :limit => 10.days.ago
   .idea-statistic
     .idea-vote
