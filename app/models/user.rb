@@ -53,6 +53,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  paginates_per 8
+
   acts_as_follower
   acts_as_followable
 

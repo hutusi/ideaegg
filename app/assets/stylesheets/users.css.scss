@@ -129,3 +129,66 @@
     width: 80px;
   }
 }
+
+.user-card {
+
+  background-color: $item-background-color;
+  height: 80px;
+  margin: 0.4em 0;
+
+  &:hover {
+    background-color: $item-background-color-hover;
+  }
+
+  .avatar {
+    position: relative;
+    left: 2em;
+    top: 1em;
+
+    img {
+      height: 45px;
+      width: 45px;
+      border-radius: 60px;
+    }
+  }
+
+  .name {
+    position: absolute;
+    left: 7em;
+    top: 1.5em;
+    a {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #212121;
+      text-decoration: none;
+      &:hover {
+        color: #666666;
+      }
+    }
+  }
+
+  .joined-on {
+    position: absolute;
+    left: 7em;
+    top: 3.2em;
+    color: #666666;
+
+    .join-label {
+      padding-left: 0.4em;
+      padding-right: 0.3em;
+    }
+  }
+
+  .follow {
+    position: absolute;
+    left: 20em;
+    top: 1.5em;
+
+    a.btn-follow-unfollow {
+      padding-top: 0.1em;
+      height: 22px;
+
+      font-size: 14px;
+    }
+  }
+}

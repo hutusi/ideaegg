@@ -14,13 +14,13 @@
           span.join-date= @user.created_at.strftime('%b,%d %Y')
       .vcard-stats
         = link_to user_path(@user, :show => 'ideas'), class: 'vcard-stat' do
-          strong.vcard-stat-count= @user.ideas.count
+          strong.vcard-stat-count= @ideas.count
           | Ideas
         = link_to user_path(@user, :show => 'followers'), class: 'vcard-stat' do
-          strong.vcard-stat-count= @user.all_followers.count
+          strong.vcard-stat-count= @followers.count
           | Followers
         = link_to user_path(@user, :show => 'following'), class: 'vcard-stat' do
-          strong.vcard-stat-count= @user.all_followees.count
+          strong.vcard-stat-count= @following.count
           | Following
 
   .col-md-9
@@ -47,3 +47,21 @@
                       .header= truncate(idea.title, length: 30)
             .paginate
               = paginate @ideas
+        - elsif @show == 'followers'
+          .row
+            - @followers.each do |follower|
+              .col-md-6
+                .user-card
+                  .avatar
+                    = link_to avatar_for(follower, size: 45), follower
+                  .name
+                    = link_to follower, class: 'entry' do
+                      = truncate(follower.fullname, length: 30)
+                  .joined-on
+                    = fa_icon('clock-o', text: ' ')
+                    span.join-label Joined on
+                    span.join-date= @user.created_at.strftime('%b,%d %Y')
+                  .follow
+                    = follow_button follower
+            .paginate
+              = paginate @followers
