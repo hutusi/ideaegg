@@ -3,8 +3,8 @@ class UsersController < ApplicationController
 
   def show
     @ideas = @user.ideas.order('created_at DESC').page params[:page]
-    @followers = Kaminari.paginate_array(@user.all_followers).page params[:page]
-    @following = Kaminari.paginate_array(@user.all_followees).page params[:page]
+    @followers = Kaminari.paginate_array(@user.all_followers).page(params[:page]).per(8)
+    @following = Kaminari.paginate_array(@user.all_followees).page(params[:page]).per(8)
 
     if params[:show]
       @show = params[:show]

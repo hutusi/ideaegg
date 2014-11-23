@@ -50,18 +50,12 @@
         - elsif @show == 'followers'
           .row
             - @followers.each do |follower|
-              .col-md-6
-                .user-card
-                  .avatar
-                    = link_to avatar_for(follower, size: 45), follower
-                  .name
-                    = link_to follower, class: 'entry' do
-                      = truncate(follower.fullname, length: 30)
-                  .joined-on
-                    = fa_icon('clock-o', text: ' ')
-                    span.join-label Joined on
-                    span.join-date= @user.created_at.strftime('%b,%d %Y')
-                  .follow
-                    = follow_button follower
+              = render partial: 'user_card', locals: {user: follower}
             .paginate
               = paginate @followers
+        - elsif @show == 'following'
+          .row
+            - @following.each do |followee|
+              = render partial: 'user_card', locals: {user: followee}
+            .paginate
+              = paginate @following

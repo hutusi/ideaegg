@@ -1,0 +1,13 @@
+.col-md-6
+  .user-card
+    .avatar
+      = link_to avatar_for(user, size: 45), user
+    .name
+      = link_to user, class: 'entry' do
+        = truncate(user.fullname, length: 30)
+    .joined-on
+      = fa_icon('clock-o', text: ' ')
+      span.join-label Joined on
+      span.join-date= @user.created_at.strftime('%b,%d %Y')
+    .follow
+      = follow_button user
