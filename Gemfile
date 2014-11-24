@@ -64,6 +64,9 @@ gem 'kaminari', '~> 0.16.1'
 # socialization: follow, like, mention
 gem "socialization"
 
+# comment
+gem 'acts_as_commentable_with_threading', '~> 2.0.0'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.1.0'
   gem 'factory_girl_rails', '~> 4.5.0'
