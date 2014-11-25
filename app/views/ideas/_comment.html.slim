@@ -1,9 +1,11 @@
 .comment
   .comment-author
-    = link_to comment.user, class: 'avatar' do
-      = avatar_for(comment.user, size: 32)
-      | #{author.fullname}
+    .author-avatar
+      = link_to comment.user do
+        = avatar_for(comment.user, size: 40)
+    .name
+      = link_to author.fullname, author
+      span.post-time
+        = timeago_tag comment.created_at, nojs: true, limit: 1.month.ago
   .comment-content
     = comment.body
-  .comment-meta
-    = timeago_tag comment.created_at, nojs: true, limit: 1.month.ago

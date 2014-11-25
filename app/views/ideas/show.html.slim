@@ -3,8 +3,8 @@
     h1=@idea.title
   .idea-content
     p= @idea.content.html_safe
-  .idea-comment
-    =render 'comments'
+  .idea-comments#comments
+    =render partial: 'comments'
 .idea-meta.col-md-3
   .author-block
     .author-avatar
@@ -18,3 +18,8 @@
   .idea-statistic
     .idea-vote
       = like_button(@idea)
+    .idea-comment
+      = link_to '#comments', class: 'btn btn-default like-button' do
+        = fa_icon('comments-o', text: t('Comments'))
+        = ' '
+        span.badge= @comments.count

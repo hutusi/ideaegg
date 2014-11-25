@@ -1,3 +1,77 @@
 // Place all the styles related to the comments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.idea-comments {
+  padding: 1em;
+  border-top: 1px solid #73C0C0;
+
+  .no-comment {
+    @extend .text-muted;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .author-avatar {
+    position: relative;
+    left: 1em;
+    top: 0em;
+
+    img {
+      height: 40px;
+      width: 40px;
+      border-radius: 60px;
+    }
+  }
+
+  .comment {
+
+    position: relative;
+    left: 0em;
+    top: 0em;
+    border-bottom: 1px solid #E6E6E6;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+
+    .comment-author {
+      .name {
+        position: absolute;
+        left: 5em;
+        top: 0.5em;
+        a {
+          font-size: 1em;
+          color: #999999;
+          text-decoration: none;
+          &:hover {
+            color: #666666;
+          }
+        }
+
+        .post-time {
+          padding-left: 5px;
+          font-size: 0.8em;
+          color: #999999;
+        }
+      }
+    }
+
+    .comment-content {
+      position: absolute;
+      left: 5em;
+      top: 1.8em;
+    }
+
+    .comment-meta {
+      position: absolute;
+      left: 50em;
+      top: 0.5em;
+
+      font-size: 0.8em;
+      color: #999999;
+    }
+  }
+
+  .new-comment {
+    padding-top: 1em;
+  }
+}
