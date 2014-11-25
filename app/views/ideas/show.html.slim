@@ -3,6 +3,8 @@
     h1=@idea.title
   .idea-content
     p= @idea.content.html_safe
+  .idea-comment
+    =render 'comments'
 .idea-meta.col-md-3
   .author-block
     .author-avatar

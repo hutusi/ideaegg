@@ -26,4 +26,7 @@ class Idea < ActiveRecord::Base
   def all_likers
     likers(User)
   end
+
+  acts_as_commentable
+  
 end

@@ -76,4 +76,5 @@ end
 
 group :development do
   gem 'annotate', '~> 2.6.5'
+  gem 'pry-rails'
 end

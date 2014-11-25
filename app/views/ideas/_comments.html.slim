@@ -1,0 +1,24 @@
+- if @comments.blank?
+  .no-comment
+    = t "no_comment."
+- else
+  h2.comment-count #{@comments.count} Comments
+  .comments
+    = @comments.each do |comment|
+      = render partial: 'comment', locals: { comment: comment, author: comment.user }
+
+- if signed_in?
+  .new-comment
+    = link_to current_user, class: 'author' do
+      = avatar_for(current_user, size: 32)
+    = form_for(@comment, url: idea_comments_path(@idea), role: 'form', html: { class: 'new-comment-form' }) do |f|
+      = render 'shared/error_messages', object: f.object
+      = f.hidden_field :idea_id, :value => @idea.id
+      = f.hidden_field :user_id, :value => current_user.id
+      .form-group
+        = f.text_area :body, placeholder: 'Comment here ...', rows: 3, class: 'form-control'
+      .form-group
+        = f.submit 'Post', class: 'btn btn-primary pull-right', data: { disable_with: 'Posting' }
+- else
+  p
+    | Please #{link_to 'Sign in', login_path} first.

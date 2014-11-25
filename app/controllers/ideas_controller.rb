@@ -7,6 +7,9 @@ class IdeasController < ApplicationController
 
   def show
     @author = @idea.author
+    
+    @comments = @idea.comment_threads
+    @comment = Comment.new
   end
 
   def new

@@ -3,7 +3,12 @@ Rails.application.routes.draw do
   root 'ideas#index'
 
   devise_for :users
-  resources :ideas
+
+  concern :commentable do
+    resources :comments, only: [:create]
+  end
+
+  resources :ideas, concerns: [:commentable]
   resources :users, only: [:show, :edit, :update]
   post   'follow'   => 'users#follow'
   post   'unfollow'   => 'users#unfollow'
