@@ -84,4 +84,6 @@ group :production do
   gem 'pg'
   # Depoy on heroku.com
   gem 'rails_12factor'
+  # webserver
+  gem 'unicorn'
 end
