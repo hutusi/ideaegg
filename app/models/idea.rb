@@ -21,12 +21,12 @@ class Idea < ActiveRecord::Base
 
   paginates_per 8
 
-  acts_as_likeable
-
-  def all_likers
-    likers(User)
-  end
+  # acts_as_likeable
+  #
+  # def all_likers
+  #   likers(User)
+  # end
 
   acts_as_commentable
-  
+
 end

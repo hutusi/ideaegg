@@ -55,20 +55,20 @@ class User < ActiveRecord::Base
 
   paginates_per 8
 
-  acts_as_follower
-  acts_as_followable
-
-  acts_as_liker
-
-  def all_followers
-    followers(User)
-  end
-
-  def all_followees
-    followees(User)
-  end
-
-  def all_likes
-    likeables(Idea)
-  end
+  # acts_as_follower
+  # acts_as_followable
+  #
+  # acts_as_liker
+  #
+  # def all_followers
+  #   followers(User)
+  # end
+  #
+  # def all_followees
+  #   followees(User)
+  # end
+  #
+  # def all_likes
+  #   likeables(Idea)
+  # end
 end
