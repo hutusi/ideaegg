@@ -60,7 +60,8 @@ gem 'rails-timeago', '~> 2.0'
 gem 'kaminari', '~> 0.16.1'
 
 # socialization: follow, like, mention
-# gem "socialization"
+gem 'acts_as_follower'
+gem 'acts_as_votable'
 
 # comment
 gem 'acts_as_commentable_with_threading', '~> 2.0.0'

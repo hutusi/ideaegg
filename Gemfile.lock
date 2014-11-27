@@ -31,6 +31,8 @@ GEM
       activerecord (>= 4.0)
       activesupport (>= 4.0)
       awesome_nested_set (>= 3.0)
+    acts_as_follower (0.2.1)
+    acts_as_votable (0.10.0)
     annotate (2.6.5)
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
@@ -203,6 +205,8 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_commentable_with_threading (~> 2.0.0)
+  acts_as_follower
+  acts_as_votable
   annotate (~> 2.6.5)
   autoprefixer-rails
   bootstrap-sass (~> 3.3.0)
