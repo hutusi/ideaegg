@@ -205,8 +205,8 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_commentable_with_threading (~> 2.0.0)
-  acts_as_follower
-  acts_as_votable
+  acts_as_follower (>= 0.2.1)
+  acts_as_votable (>= 0.10.0)
   annotate (~> 2.6.5)
   autoprefixer-rails
   bootstrap-sass (~> 3.3.0)

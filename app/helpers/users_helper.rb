@@ -11,7 +11,7 @@ module UsersHelper
   def follow_button(user)
     return unless user
 
-    if current_user.follows?(user)
+    if current_user.following? user
     link_to fa_icon('male', text: 'Unfollow'),
             {:controller => "users", :action => "unfollow", :follower_id => current_user.id, :id => user.id },
             method: :post,

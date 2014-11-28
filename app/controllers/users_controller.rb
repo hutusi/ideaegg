@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   def follow
     respond_to do |format|
       follower = User.find(params[:follower_id])
-      follower.follow!(@user)
+      follower.follow(@user)
       format.html { redirect_to @user, notice: 'Follow successfully.' }
       format.json { head :no_content }
     end
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   def unfollow
     respond_to do |format|
       follower = User.find(params[:follower_id])
-      follower.unfollow!(@user)
+      follower.stop_following(@user)
       format.html { redirect_to @user, notice: 'Unfollow successfully.' }
       format.json { head :no_content }
     end

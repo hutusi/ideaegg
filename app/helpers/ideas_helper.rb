@@ -7,9 +7,9 @@ module IdeasHelper
     return unless idea
     return if idea.destroyed?
 
-    count = idea.all_likers.count.to_s
+    count = idea.all_likers.count
 
-    if current_user.likes?(idea)
+    if current_user.liked?(idea)
       tag = fa_icon('heart', text: t('Liked')) + ' ' + content_tag(:span, count, class: 'badge')
       link_to tag,
            {:controller => "ideas", :action => "unlike", :liker_id => current_user.id, :id => idea.id },
