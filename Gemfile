@@ -69,8 +69,11 @@ gem 'acts_as_commentable_with_threading', '~> 2.0.0'
 group :development, :test do
   gem 'rspec-rails', '>= 3.1.0'
   gem 'factory_girl_rails', '>= 4.5.0'
-  gem 'ffaker'
-  gem 'seed-fu', '~> 2.3'
+  gem 'ffaker', '>= 1.25.0'
+  gem 'seed-fu', '>= 2.3'
+  gem 'guard-rspec', '>= 4.3.1'
+  gem 'guard-spork', '>= 2.0.1'
+
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
 end
