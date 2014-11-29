@@ -30,11 +30,15 @@ class User < ActiveRecord::Base
   attr_accessor :login
 
   validates :username,
+    :presence => true,
     :uniqueness => {
       :case_sensitive => false
     },
     :format => { with: /\A[a-zA-Z]+[a-zA-Z0-9]+\z/,
-    message: "begin with letters and only allows letters or digits"  }
+    message: "begin with letters and only allows letters or digits"  },
+    :length => { minimum: 5, maximum: 30 }
+
+  validates :fullname, :presence => true, :length => { maximum: 120 }
 
   def login=(login)
     @login = login
