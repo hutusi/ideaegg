@@ -67,8 +67,8 @@ gem 'acts_as_votable', '>= 0.10.0'
 gem 'acts_as_commentable_with_threading', '~> 2.0.0'
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.1.0'
-  gem 'factory_girl_rails', '~> 4.5.0'
+  gem 'rspec-rails', '>= 3.1.0'
+  gem 'factory_girl_rails', '>= 4.5.0'
   gem 'ffaker'
   gem 'seed-fu', '~> 2.3'
   # Use sqlite3 as the database for Active Record
@@ -78,6 +78,12 @@ end
 group :development do
   gem 'annotate', '~> 2.6.5'
   gem 'pry-rails'
+end
+
+group :test do
+  gem 'capybara', '>= 2.4.4'
+  gem 'selenium-webdriver', '>= 2.44.0'
+  gem 'shoulda-matchers', '>= 2.7.0'
 end
 
 group :production do
