@@ -75,4 +75,19 @@ describe UsersController do
       end
     end
   end
+
+  describe 'POST #follow' do
+    before do
+      @tom = FactoryGirl.create(:user)
+      @jerry = FactoryGirl.create(:user)
+    end
+
+    it "follows successfully" do
+      follow_user(@jerry, @tom) 
+      @tom.reload
+      @jerry.reload
+      expect(@tom.all_followers.count).to eq 1
+      expect(@jerry.all_followees.count).to eq 1
+    end
+  end
 end

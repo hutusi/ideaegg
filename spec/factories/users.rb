@@ -20,12 +20,11 @@
 #
 
 FactoryGirl.define do
-  factory :user do
-    username 'johndoe'
+  factory :user, aliases: [:author] do
+    sequence(:username) {|n| "johndoe#{n}" }
     fullname 'John Doe'
-    email 'john@ideaegg.me'
+    sequence(:email) {|n| "john#{n}@ideaegg.me" }
     password '12345678'
-    password_confirmation '12345678'
+    password_confirmation { password }
   end
-
 end

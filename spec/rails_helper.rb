@@ -21,18 +21,22 @@ require 'database_cleaner'
 # require only the support files necessary.
 #
 # Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+  # custom macros
+  config.include UsersMacros
+  
   # database cleaner
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
   end
-  
+
   # devise helper
   config.include Devise::TestHelpers, :type => :controller
 

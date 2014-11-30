@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
   acts_as_followable
   acts_as_voter
 
+  # paginates
   paginates_per 8
 
   # accessors
