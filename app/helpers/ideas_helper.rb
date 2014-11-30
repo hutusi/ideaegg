@@ -9,7 +9,11 @@ module IdeasHelper
 
     count = idea.all_likers.count
 
-    if current_user.liked?(idea)
+    if !user_signed_in?
+      tag = fa_icon('heart-o', text: t('Like')) + ' ' + content_tag(:span, count, class: 'badge')
+      link_to tag, new_user_session_path,
+           class: 'btn btn-default like-button'
+    elsif current_user.liked?(idea)
       tag = fa_icon('heart', text: t('Liked')) + ' ' + content_tag(:span, count, class: 'badge')
       link_to tag,
            {:controller => "ideas", :action => "unlike", :liker_id => current_user.id, :id => idea.id },
