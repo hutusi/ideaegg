@@ -20,15 +20,25 @@
 #
 
 class User < ActiveRecord::Base
-  has_many :ideas, dependent: :destroy
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  # acts_as
+  acts_as_follower
+  acts_as_followable
+  acts_as_voter
+
+  paginates_per 8
+
+  # accessors
   attr_accessor :login
 
+  # associations
+  has_many :ideas, dependent: :destroy
+
+  # validations
   validates :username,
     :presence => true,
     :uniqueness => {
@@ -37,8 +47,10 @@ class User < ActiveRecord::Base
     :format => { with: /\A[a-zA-Z]+[a-zA-Z0-9]+\z/,
     message: "begin with letters and only allows letters or digits"  },
     :length => { minimum: 5, maximum: 30 }
+  validates :fullname, :length => { maximum: 120 }
 
-  validates :fullname, :presence => true, :length => { maximum: 120 }
+  # callbacks
+  before_save :autofill_fullname
 
   def login=(login)
     @login = login
@@ -57,13 +69,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  paginates_per 8
-
-  acts_as_follower
-  acts_as_followable
-
-  acts_as_voter
-
   def all_followers
     followers
   end
@@ -75,4 +80,9 @@ class User < ActiveRecord::Base
   def all_likes
     get_up_voted(Idea)
   end
+
+  private
+    def autofill_fullname
+      @fullname = @username if @fullname.blank?
+    end
 end
