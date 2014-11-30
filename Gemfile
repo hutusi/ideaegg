@@ -75,7 +75,7 @@ group :development, :test do
   gem 'spork-rails', '>= 4.0.0'
   gem 'guard-spork', '>= 2.0.1'
   gem 'simplecov', :require => false
-
+  gem 'launchy', '>= 2.4.3'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
 end

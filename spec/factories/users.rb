@@ -21,7 +21,11 @@
 
 FactoryGirl.define do
   factory :user do
-    
+    username 'johndoe'
+    fullname 'John Doe'
+    email 'john@ideaegg.me'
+    password '12345678'
+    password_confirmation '12345678'
   end
 
 end
