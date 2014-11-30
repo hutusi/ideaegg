@@ -74,6 +74,7 @@ group :development, :test do
   gem 'guard-rspec', '>= 4.3.1'
   gem 'spork-rails', '>= 4.0.0'
   gem 'guard-spork', '>= 2.0.1'
+  gem 'simplecov', :require => false
 
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
