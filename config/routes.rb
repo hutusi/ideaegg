@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # root path
   root 'ideas#index'
 
-  devise_for :users
+  devise_for :users, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout'}
 
   concern :commentable do
     resources :comments, only: [:create]

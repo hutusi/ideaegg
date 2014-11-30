@@ -82,10 +82,14 @@
     border-right: 1px solid #73C0C0;
   }
 
-  .new-idea-submit-block {
+  .ideas-side-block {
     padding: 1em;
 
     .btn-submit-idea {
+      width: 100%;
+    }
+
+    .btn-sign-in {
       width: 100%;
     }
   }
