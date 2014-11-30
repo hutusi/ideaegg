@@ -72,6 +72,7 @@ group :development, :test do
   gem 'ffaker', '>= 1.25.0'
   gem 'seed-fu', '>= 2.3'
   gem 'guard-rspec', '>= 4.3.1'
+  gem 'spork-rails', '>= 4.0.0'
   gem 'guard-spork', '>= 2.0.1'
 
   # Use sqlite3 as the database for Active Record
