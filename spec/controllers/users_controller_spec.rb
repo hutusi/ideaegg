@@ -1,5 +1,25 @@
 require 'rails_helper'
 
+require 'rspec/expectations'
+
+RSpec::Matchers.define :successfully_followed do |followee|
+  match do |follower|
+    follower.reload
+    followee.reload
+    expect(followee.all_followers.count).to eq 1
+    expect(follower.all_followees.count).to eq 1
+  end
+
+  failure_message do |follower|
+    "expected to #{follower.username} follow #{followee.username}"
+  end
+
+  failure_message_when_negated do |follower|
+    "expected not to #{follower.username} follow #{followee.username}"
+  end
+end
+
+
 describe UsersController do
   before { @user = FactoryGirl.create(:user) }
 
@@ -83,11 +103,8 @@ describe UsersController do
     end
 
     it "follows successfully" do
-      follow_user(@jerry, @tom) 
-      @tom.reload
-      @jerry.reload
-      expect(@tom.all_followers.count).to eq 1
-      expect(@jerry.all_followees.count).to eq 1
+      follow_user(@jerry, @tom)
+      expect(@jerry).to successfully_followed(@tom)
     end
   end
 end
