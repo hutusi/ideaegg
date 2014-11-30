@@ -39,8 +39,13 @@ describe User do
   end
 
   describe 'Autofill fullname' do
-    # user = User.new(username: 'john', email: 'john@exmaple.com')
-    # user.save!
-    # it { expect(user.fullname).to eq user.username }
+    user = User.new(
+      username: 'randomname',
+      email: 'randomname@exmaple.com',
+      password: '12345678',
+      password_confirmation: '12345678')
+    user.save!
+    user.reload
+    it { expect(user.fullname).to eq user.username }
   end
 end

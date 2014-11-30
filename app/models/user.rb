@@ -48,6 +48,7 @@ class User < ActiveRecord::Base
     message: "begin with letters and only allows letters or digits"  },
     :length => { minimum: 5, maximum: 30 }
   validates :fullname, :length => { maximum: 120 }
+  validates :fullname, :presence => true, :on => :update
 
   # callbacks
   before_save :autofill_fullname
@@ -83,6 +84,6 @@ class User < ActiveRecord::Base
 
   private
     def autofill_fullname
-      @fullname = @username if @fullname.blank?
+      self.fullname = self.username if self.fullname.blank?
     end
 end

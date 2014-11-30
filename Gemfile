@@ -76,6 +76,7 @@ group :development, :test do
   gem 'guard-spork', '>= 2.0.1'
   gem 'simplecov', :require => false
   gem 'launchy', '>= 2.4.3'
+  gem 'database_cleaner', '>= 1.3.0', :require => false
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
 end
