@@ -27,8 +27,8 @@ describe User do
   end
 
   describe 'Validations' do
-    it { should validate_uniqueness_of :email }
-    it { should validate_uniqueness_of :username }
+    it { should validate_uniqueness_of(:email).case_insensitive }
+    it { should validate_uniqueness_of(:username).case_insensitive }
 
     it { should validate_presence_of :email }
     it { should validate_presence_of :username }
@@ -39,13 +39,17 @@ describe User do
   end
 
   describe 'Autofill fullname' do
-    user = User.new(
-      username: 'randomname',
-      email: 'randomname@exmaple.com',
-      password: '12345678',
-      password_confirmation: '12345678')
-    user.save!
-    user.reload
+    user = FactoryGirl.create(:user, fullname: '')
     it { expect(user.fullname).to eq user.username }
+  end
+
+  describe 'Auto downcase email' do
+    user = FactoryGirl.create(:user, email: 'RanDom@example.com')
+    it { expect(user.email).to eq user.email.downcase }
+  end
+
+  describe 'Auto downcase username' do
+    user = FactoryGirl.create(:user, username: 'RanDom')
+    it { expect(user.username).to eq user.username.downcase }
   end
 end

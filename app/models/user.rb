@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
   validates :fullname, :presence => true, :on => :update
 
   # callbacks
-  before_save :autofill_fullname
+  before_save :autofill_fullname, :downcase_username
 
   def login=(login)
     @login = login
@@ -86,5 +86,9 @@ class User < ActiveRecord::Base
   private
     def autofill_fullname
       self.fullname = self.username if self.fullname.blank?
+    end
+
+    def downcase_username
+      self.username && self.username.downcase!
     end
 end
