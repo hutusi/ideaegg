@@ -30,7 +30,8 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   # custom macros
   config.include UsersMacros
-  
+  config.include SessionsMacros
+
   # database cleaner
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
