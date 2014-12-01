@@ -31,16 +31,15 @@ RSpec.configure do |config|
   # custom macros
   config.include UsersMacros
   config.include SessionsMacros
+  # devise helper
+  config.include Devise::TestHelpers, :type => :controller
 
   # database cleaner
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
   end
-
-  # devise helper
-  config.include Devise::TestHelpers, :type => :controller
-
+  
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

@@ -2,7 +2,12 @@ Rails.application.routes.draw do
   # root path
   root 'ideas#index'
 
-  devise_for :users, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout'}
+  devise_for :users, :path => ''
+  devise_scope :user do
+    get     "/sign_in"    => "devise/sessions#new"
+    delete  "/sign_out"   => "devise/sessions#destroy"
+    get     "/register" => "devise/registrations#new"
+  end
 
   concern :commentable do
     resources :comments, only: [:create]

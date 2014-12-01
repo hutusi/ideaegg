@@ -1,5 +1,6 @@
 class IdeasController < ApplicationController
   before_action :get_idea, only: [:show, :edit, :update, :destroy, :like, :unlike]
+  before_action :signed_in_user, only: [:new, :create, :edit, :update, :destroy, :like, :unlike]
 
   def index
     @ideas = Idea.order('created_at DESC').page params[:page]
@@ -53,5 +54,11 @@ class IdeasController < ApplicationController
 
     def idea_params
       params.require(:idea).permit(:title, :content)
+    end
+
+    def signed_in_user
+      unless user_signed_in?
+        redirect_to sign_in_url, notice: 'Please sign in.'
+      end
     end
 end

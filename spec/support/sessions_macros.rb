@@ -1,4 +1,9 @@
 module SessionsMacros
+  def login_user(user)
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    sign_in user
+  end
+
   def sign_up(user)
     visit root_path
     first(:link, 'Sign in').click
