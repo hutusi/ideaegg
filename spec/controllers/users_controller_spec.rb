@@ -1,25 +1,5 @@
 require 'rails_helper'
 
-require 'rspec/expectations'
-
-RSpec::Matchers.define :successfully_followed do |followee|
-  match do |follower|
-    follower.reload
-    followee.reload
-    expect(followee.all_followers.count).to eq 1
-    expect(follower.all_followees.count).to eq 1
-  end
-
-  failure_message do |follower|
-    "expected to #{follower.username} follow #{followee.username}"
-  end
-
-  failure_message_when_negated do |follower|
-    "expected not to #{follower.username} follow #{followee.username}"
-  end
-end
-
-
 describe UsersController do
   before { @user = FactoryGirl.create(:user) }
 
@@ -105,6 +85,26 @@ describe UsersController do
     it "follows successfully" do
       follow_user(@jerry, @tom)
       expect(@jerry).to successfully_followed(@tom)
+    end
+
+    it "should not follow yourself" do
+      follow_user(@jerry, @jerry)
+      expect(@jerry).not_to successfully_followed(@jerry)
+    end
+  end
+
+  describe 'POST #unfollow' do
+    before do
+      @tom = FactoryGirl.create(:user)
+      @jerry = FactoryGirl.create(:user)
+    end
+
+    it "unfollows successfully" do
+      follow_user(@jerry, @tom)
+      expect(@jerry).to successfully_followed(@tom)
+
+      unfollow_user(@jerry, @tom)
+      expect(@jerry).to successfully_unfollowed(@tom)
     end
   end
 end

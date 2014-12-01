@@ -1,1 +1,19 @@
-# require 'rspec/expectations'## RSpec::Matchers.define :successfully_followed do |followee|#   match do |follower|#     follower.reload#     followee.reload#     expect(followee.all_followers.count).to eq 1#     expect(follower.all_followees.count).to eq 1#   end# #   failure_message do |follower|#     "expected to #{follower.username} follow #{followee.username}"#   end#   failure_message_when_negated do |follower|#     "expected not to #{follower.username} follow #{followee.username}"#   end##   description do#     "follow #{followee.username}"#   end# end
+require 'rspec/expectations'
+
+RSpec::Matchers.define :successfully_followed do |followee|
+  match do |follower|
+    follower.reload
+    followee.reload
+    expect(followee.all_followers.include? follower).to be true
+    expect(follower.all_followees.include? followee).to be true
+  end
+end
+
+RSpec::Matchers.define :successfully_unfollowed do |followee|
+  match do |follower|
+    follower.reload
+    followee.reload
+    expect(followee.all_followers.include? follower).to be false
+    expect(follower.all_followees.include? followee).to be false
+  end
+end
