@@ -13,6 +13,7 @@
 
 FactoryGirl.define do
   factory :idea do
+    author
     title "Hello"
     content "World"
   end

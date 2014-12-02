@@ -24,7 +24,7 @@ class Idea < ActiveRecord::Base
   acts_as_votable
 
   def all_likers
-    get_likes
+    votes_for.up.by_type(User).voters
   end
 
   acts_as_commentable

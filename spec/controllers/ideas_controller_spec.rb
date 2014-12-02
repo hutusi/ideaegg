@@ -36,4 +36,26 @@ describe IdeasController do
       }.to change(Idea, :count).by(1)
     end
   end
+
+  # edit / delete
+
+  describe 'POST #like' do
+    before do
+      login_user @user
+      @idea = FactoryGirl.create(:idea)
+    end
+
+    it 'like the idea' do
+      post :like, id: @idea, liker_id: @user
+      expect(@user).to successfully_liked(@idea)
+    end
+
+    it 'unlike the idea' do
+      post :like, id: @idea, liker_id: @user
+      expect(@user).to successfully_liked(@idea)
+
+      post :unlike, id: @idea, liker_id: @user
+      expect(@user).to successfully_unliked(@idea)
+    end
+  end
 end
