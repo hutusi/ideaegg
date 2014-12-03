@@ -86,12 +86,13 @@ Rails.application.configure do
   config.action_mailer.default :charset => "utf-8"
 
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
-    port: 587,
-    domain: "ideaegg.me",
-    authentication: "plain",
+    address: "smtp.163.com",
+    port: 25,
+    domain: "163.com",
+    authentication: :login,
     enable_starttls_auto: true,
-    user_name: ENV["GMAIL_USERNAME"],
-    password: ENV["GMAIL_PASSWORD"]
+    user_name: ENV["EMAIL_USERNAME"],
+    password: ENV["EMAIL_PASSWORD"],
+    enable_starttls_auto: true
   }
 end

@@ -1,0 +1,13 @@
+defaults: &defaults
+  email:
+    username: ''
+    password: ''
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
