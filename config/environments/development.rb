@@ -50,7 +50,6 @@ Rails.application.configure do
     authentication: :login,
     enable_starttls_auto: true,
     user_name: Settings['email']['username'],
-    password: Settings['email']['password'],
-    enable_starttls_auto: true
+    password: Settings['email']['password']
   }
 end
