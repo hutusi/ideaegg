@@ -15,6 +15,10 @@
       .publish
         | Published&nbsp;
         = timeago_tag @idea.created_at, :nojs => true, :limit => 10.days.ago
+  -if @author == current_user
+    .idea-edit
+      span.edit= link_to(fa_icon('pencil', text: 'Edit'), edit_idea_path)
+      span.delete= link_to(fa_icon('times', text: 'Delete'), @idea, method: :delete, data: { confirm: 'Are you sure?' })
   .idea-statistic
     .idea-vote
       = like_button(@idea)

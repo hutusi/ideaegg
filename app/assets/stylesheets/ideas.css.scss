@@ -61,9 +61,32 @@
     }
   }
 
+  .idea-edit {
+    border-bottom: 1px solid #73C0C0;
+    padding: 1em;
+    text-align: center;
+
+    a {
+      color: #333333;
+      text-decoration: none;
+      &:hover {
+        color: #666666;
+      }
+    }
+
+    span.edit {
+
+    }
+
+    span.delete {
+      padding-left: 2em;
+    }
+  }
+
   .idea-statistic {
     //border-bottom: 1px solid #73C0C0;
     padding: 1em;
+    text-align: center;
 
     a.like-button {
       width: 160px;

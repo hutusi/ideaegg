@@ -28,6 +28,9 @@ class IdeasController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   def like
     respond_to do |format|
       liker = User.find(params[:liker_id])

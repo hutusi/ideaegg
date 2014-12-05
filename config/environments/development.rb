@@ -44,12 +44,12 @@ Rails.application.configure do
   config.action_mailer.default :charset => "utf-8"
 
   config.action_mailer.smtp_settings = {
-    address: "smtp.163.com",
-    port: 25,
-    domain: "163.com",
-    authentication: :login,
-    enable_starttls_auto: true,
-    user_name: Settings['email']['username'],
-    password: Settings['email']['password']
+    address: Settings['smtp']['address'],
+    port: Settings['smtp']['port'],
+    domain: Settings['smtp']['domain'],
+    authentication: Settings['smtp']['authentication'],
+    enable_starttls_auto: Settings['smtp']['enable_starttls_auto'],
+    user_name: Settings['smtp']['user_name'],
+    password: Settings['smtp']['password']
   }
 end
