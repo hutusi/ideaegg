@@ -31,6 +31,20 @@ class IdeasController < ApplicationController
   def edit
   end
 
+  def update
+    if @idea.update(idea_params)
+      flash[:success] = "Idea was successfully updated."
+      redirect_to @idea
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @idea.destroy
+    redirect_to root_path
+  end
+
   def like
     respond_to do |format|
       liker = User.find(params[:liker_id])
