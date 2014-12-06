@@ -23,6 +23,10 @@ $ ->
       lineNumbers: true
       tabSize: 2
       theme: 'solarized light'
+    onImageUpload: (files, editor, welEditable) ->
+      for file in files
+        Qiniu.sendFile file, (url) ->
+          editor.insertImage(welEditable, url)
 
   # to set code for summernote
   summer_note.code summer_note.val()

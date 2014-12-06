@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   post   'like'   => 'ideas#like'
   post   'unlike'   => 'ideas#unlike'
 
+  get '/uploads/uptoken' => 'uploads#uptoken'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
