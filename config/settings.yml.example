@@ -1,7 +1,22 @@
 defaults: &defaults
-  email:
-    username: ''
+  secret_key_base: '9832e3fb0fab83e02482ba5f9aafbc686af1dd671f3d2ba47fe7b39aec743561a100464d59ae841b5d030a7b69dc919f13c2ca64d75b9bce16894459cdd44414'
+
+  devise:
+    secret_key: '9832e3fb0fab83e02482ba5f9aafbc686af1dd671f3d2ba47fe7b39aec743561a100464d59ae841b5d030a7b69dc919f13c2ca64d75b9bce16894459cdd44414'
+
+  smtp:
+    address: 'smtp.163.com'
+    port: 25
+    domain: 'ideaegg.me'
+    authentication: 'login'
+    enable_starttls_auto: true
+    user_name: ''
     password: ''
+
+  qiniu:
+    access_key: ''
+    secret_key: ''
+    bucket: ''
 
 development:
   <<: *defaults

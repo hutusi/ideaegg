@@ -25,5 +25,5 @@ end
 if File.exists? "#{Rails.root}/config/settings.yml"
   Settings = YAML.load_file("#{Rails.root}/config/settings.yml")[Rails.env]
 else
-  Settings = YAML.load_file("#{Rails.root}/config/settings-heroku.yml")[Rails.env]
+  Settings = YAML.load_file("#{Rails.root}/config/settings.heroku.yml")[Rails.env]
 end
