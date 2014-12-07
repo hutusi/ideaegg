@@ -3,11 +3,12 @@ defaults: &defaults
 
   devise:
     secret_key: ENV["DEVISE_SECRET_KEY"]
+    mailer_sender: ENV["DEVISE_MAILER_SENDER"]
 
   smtp:
-    address: 'smtp.163.com'
+    address: ENV["SMTP_ADDRESS"]
     port: 25
-    domain: 'ideaegg.me'
+    domain: ENV["SMTP_DOMAIN"]
     authentication: 'login'
     enable_starttls_auto: true
     user_name: ENV["EMAIL_USERNAME"]

@@ -3,6 +3,7 @@ defaults: &defaults
 
   devise:
     secret_key: '9832e3fb0fab83e02482ba5f9aafbc686af1dd671f3d2ba47fe7b39aec743561a100464d59ae841b5d030a7b69dc919f13c2ca64d75b9bce16894459cdd44414'
+    mailer_sender: 'ideaegg@126.com'
 
   smtp:
     address: 'smtp.163.com'
