@@ -17,6 +17,7 @@
 #  updated_at             :datetime
 #  username               :string(255)
 #  fullname               :string(255)
+#  ideas_count            :integer          default(0)
 #
 
 require 'rails_helper'
