@@ -80,18 +80,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'ideaegg-new.herokuapp.com' }
   # ActionMailer Config
   # Setup for production - deliveries, no errors raised
-  config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default :charset => "utf-8"
-
-  config.action_mailer.smtp_settings = {
-    address: "smtp.163.com",
-    port: 25,
-    domain: "163.com",
-    authentication: :login,
-    enable_starttls_auto: true,
-    user_name: ENV["EMAIL_USERNAME"],
-    password: ENV["EMAIL_PASSWORD"]
-  }
 end

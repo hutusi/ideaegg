@@ -1,0 +1,24 @@
+defaults: &defaults
+  secret_key_base: ENV["SECRET_KEY_BASE"]
+  smtp:
+    address: 'smtp.163.com'
+    port: 25
+    domain: 'ideaegg.me'
+    authentication: 'login'
+    enable_starttls_auto: true
+    user_name: ENV["EMAIL_USERNAME"]
+    password: ENV["EMAIL_PASSWORD"]
+
+  qiniu:
+    access_key: ENV["QINIU_ACCESS_KEY"]
+    secret_key: ENV["QINIU_SECRET_KEY"]
+    bucket: ENV["QINIU_BUCKET"]
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
