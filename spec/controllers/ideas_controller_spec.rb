@@ -37,7 +37,94 @@ describe IdeasController do
     end
   end
 
-  # edit / delete
+  describe 'GET #edit' do
+    it 'redirect to sign in if not signed in' do
+      @idea = FactoryGirl.create(:idea)
+      get :edit, id: @idea
+      expect(response).to redirect_to sign_in_url
+    end
+
+    context "edit other user's idea" do
+      before do
+        login_user @user
+        @idea = FactoryGirl.create(:idea)
+      end
+
+      it 'should not redirect to edit path' do
+        get :edit, id: @idea
+        expect(response).not_to render_template :edit
+      end
+    end
+
+    context 'edit self idea' do
+      before do
+         login_user @user
+         @idea = FactoryGirl.create(:idea, author: @user)
+       end
+
+      it 'assigns the requested idea to @idea' do
+        get :edit, id: @idea
+        expect(assigns(:idea)).to eq @idea
+      end
+
+      it 'render the :edit template' do
+        get :edit, id: @idea
+        expect(response).to render_template :edit
+      end
+    end
+  end
+
+  describe 'PATCH #update' do
+    it 'redirect to sign in if not signed in' do
+      @idea = FactoryGirl.create(:idea)
+      get :edit, id: @idea
+      expect(response).to redirect_to sign_in_url
+    end
+
+    context 'sign in' do
+      before do
+        login_user @user
+        @idea = FactoryGirl.create(:idea, author: @user)
+      end
+
+      context 'with valid attributes' do
+        before { @valid_attributes = FactoryGirl.attributes_for(:idea,
+          title: 'Hello', content: 'World')}
+        it "changes @idea's informations" do
+          patch :update, id: @idea,
+          idea: @valid_attributes
+          @idea.reload
+          expect(@idea.title).to eq 'Hello'
+          expect(@idea.content).to eq 'World'
+        end
+
+        it "redirects to the updated idea" do
+          patch :update, id: @idea,
+          idea: @valid_attributes
+          expect(response).to redirect_to @idea
+        end
+      end
+
+      context 'with invalid attributes' do
+        before { @invalid_attributes = FactoryGirl.attributes_for(:idea,
+          title: '', conten: '')}
+
+        it "does not change @idea's title" do
+          old_info = @idea.dup
+          patch :update, id: @idea,
+          idea: @invalid_attributes
+          @idea.reload
+          expect(@idea.title).to eq old_info.title
+        end
+
+        it "re-renders the edit template" do
+          patch :update, id: @idea,
+          idea: @invalid_attributes
+          expect(response).to render_template :edit
+        end
+      end
+    end
+  end
 
   describe 'POST #like' do
     before do

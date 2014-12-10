@@ -1,6 +1,7 @@
 class IdeasController < ApplicationController
   before_action :get_idea, only: [:show, :edit, :update, :destroy, :like, :unlike]
   before_action :signed_in_user, only: [:new, :create, :edit, :update, :destroy, :like, :unlike]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
     @ideas = Idea.order('created_at DESC').page params[:page]
@@ -71,5 +72,11 @@ class IdeasController < ApplicationController
 
     def idea_params
       params.require(:idea).permit(:title, :content)
+    end
+
+    def correct_user
+      unless current_user == @idea.author
+        redirect_to idea_path(@idea), notice: 'Not correct user.'
+      end
     end
 end
