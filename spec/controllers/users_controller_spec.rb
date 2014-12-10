@@ -118,14 +118,23 @@ describe UsersController do
       @jerry = FactoryGirl.create(:user)
     end
 
-    it "follows successfully" do
+    it 'redirect to sign in if not signed in' do
       follow_user(@jerry, @tom)
-      expect(@jerry).to successfully_followed(@tom)
+      expect(response).to redirect_to sign_in_url
     end
 
-    it "should not follow yourself" do
-      follow_user(@jerry, @jerry)
-      expect(@jerry).not_to successfully_followed(@jerry)
+    context 'signed in' do
+      before { login_user @jerry }
+
+      it "follows successfully" do
+        follow_user(@jerry, @tom)
+        expect(@jerry).to successfully_followed(@tom)
+      end
+
+      it "should not follow yourself" do
+        follow_user(@jerry, @jerry)
+        expect(@jerry).not_to successfully_followed(@jerry)
+      end
     end
   end
 
@@ -135,12 +144,16 @@ describe UsersController do
       @jerry = FactoryGirl.create(:user)
     end
 
-    it "unfollows successfully" do
-      follow_user(@jerry, @tom)
-      expect(@jerry).to successfully_followed(@tom)
+    context 'signed in' do
+      before { login_user @jerry }
 
-      unfollow_user(@jerry, @tom)
-      expect(@jerry).to successfully_unfollowed(@tom)
+      it "unfollows successfully" do
+        follow_user(@jerry, @tom)
+        expect(@jerry).to successfully_followed(@tom)
+
+        unfollow_user(@jerry, @tom)
+        expect(@jerry).to successfully_unfollowed(@tom)
+      end
     end
   end
 end
