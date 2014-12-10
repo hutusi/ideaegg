@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :get_user, only: [:show, :edit, :update, :follow, :unfollow]
+  before_action :signed_in_user, only: [:edit, :update]
+  before_action :correct_user, only: [:edit, :update]
 
   def show
     @ideas = @user.ideas.order('created_at DESC').page params[:page]
@@ -54,5 +56,11 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:username, :fullname, :email)
+    end
+
+    def correct_user
+      unless current_user == @user
+        redirect_to edit_user_path(current_user), notice: 'Not correct user.'
+      end
     end
 end
