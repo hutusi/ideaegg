@@ -137,12 +137,34 @@ describe IdeasController do
       expect(@user).to successfully_liked(@idea)
     end
 
+    it 'should not like idea again' do
+      post :like, id: @idea, liker_id: @user
+      expect(@user).to successfully_liked(@idea)
+      count = @idea.votes_for.up.size
+      liked_count = @user.liked_ideas_count
+      post :like, id: @idea, liker_id: @user
+      @idea.reload
+      @user.reload
+      expect(count).to eq @idea.votes_for.up.size
+      expect(@user.liked_ideas_count ).to eq liked_count
+    end
+
     it 'unlike the idea' do
       post :like, id: @idea, liker_id: @user
       expect(@user).to successfully_liked(@idea)
 
       post :unlike, id: @idea, liker_id: @user
       expect(@user).to successfully_unliked(@idea)
+    end
+
+    it 'should not unlike unliked idea' do
+      count = @idea.votes_for.up.size
+      liked_count = @user.liked_ideas_count
+      post :unlike, id: @idea, liker_id: @user
+      @idea.reload
+      @user.reload
+      expect(count).to eq @idea.votes_for.up.size
+      expect(@user.liked_ideas_count ).to eq liked_count
     end
   end
 end
