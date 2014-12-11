@@ -50,6 +50,7 @@ class IdeasController < ApplicationController
     respond_to do |format|
       liker = User.find(params[:liker_id])
       liker.likes @idea
+      liker.increment!(:liked_ideas_count)
       format.html { redirect_to @idea, notice: 'Like successfully.' }
       format.json { head :no_content }
     end
@@ -59,6 +60,7 @@ class IdeasController < ApplicationController
     respond_to do |format|
       liker = User.find(params[:liker_id])
       @idea.unliked_by liker
+      liker.decrement!(:liked_ideas_count)
       format.html { redirect_to @idea, notice: 'Unlike successfully.' }
       format.json { head :no_content }
     end

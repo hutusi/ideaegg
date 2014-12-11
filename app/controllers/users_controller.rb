@@ -9,8 +9,10 @@ class UsersController < ApplicationController
     @followers = Kaminari.paginate_array(@user.all_followers).page(params[:page]).per(8)
     @following = Kaminari.paginate_array(@user.all_followees).page(params[:page]).per(8)
 
-    if params[:show]
+    if params[:show] # visit user's ideas, likes, followers, followings, etc. 
       @show = params[:show]
+    else # visit user's profile
+      @user.increment!(:visits_count)
     end
   end
 

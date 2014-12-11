@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141206023551) do
+ActiveRecord::Schema.define(version: 20141210135419) do
 
   create_table "comments", force: true do |t|
     t.integer  "commentable_id"
@@ -72,6 +72,11 @@ ActiveRecord::Schema.define(version: 20141206023551) do
     t.string   "username"
     t.string   "fullname"
     t.integer  "ideas_count",            default: 0
+    t.integer  "comments_count",         default: 0
+    t.integer  "visits_count",           default: 0
+    t.integer  "followees_count",        default: 0
+    t.integer  "followers_count",        default: 0
+    t.integer  "liked_ideas_count",      default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
