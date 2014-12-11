@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   # root path
-  root 'ideas#index'
+  authenticated :user do
+    root to: "ideas#index" #, as: :authenticated_root
+  end
+  unauthenticated do
+    root to: "home#index", as: :unauthenticated_root
+  end
 
   devise_for :users, :path => ''
   devise_scope :user do
