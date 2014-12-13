@@ -8,6 +8,7 @@ class IdeasController < ApplicationController
   end
 
   def show
+    @idea.increment!(:visits_count)
     @author = @idea.author
 
     @comments = @idea.comment_threads

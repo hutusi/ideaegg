@@ -1,4 +1,4 @@
-class AddCountsToUsers < ActiveRecord::Migration
+class AddCountersToUsers < ActiveRecord::Migration
   def change
     add_column :users, :ideas_count, :integer, :default => 0
     add_column :users, :comments_count, :integer, :default => 0

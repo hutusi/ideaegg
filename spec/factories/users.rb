@@ -18,6 +18,11 @@
 #  username               :string(255)
 #  fullname               :string(255)
 #  ideas_count            :integer          default(0)
+#  comments_count         :integer          default(0)
+#  visits_count           :integer          default(0)
+#  followees_count        :integer          default(0)
+#  followers_count        :integer          default(0)
+#  liked_ideas_count      :integer          default(0)
 #
 
 FactoryGirl.define do
