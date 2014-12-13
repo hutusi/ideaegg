@@ -1,5 +1,6 @@
 .form-join.devise-form
   = form_for(resource, as: resource_name, url: session_path(resource_name), role: 'form', class: 'form-join') do |f|
+    = devise_error_messages!
     .form-group
       = f.label :login
       |

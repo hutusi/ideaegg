@@ -9,6 +9,9 @@ html
   body
     header
       = render 'layouts/header'
+    .message-banner
+      .container
+        = render 'layouts/messages'
     main role="main"
       .container
         = yield
