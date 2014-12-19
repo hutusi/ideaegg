@@ -72,6 +72,10 @@ gem "paranoia", "~> 2.0"
 # qiuniu cloud strorage
 gem 'qiniu', '~> 6.4.0'
 
+# api
+gem 'grape', '~> 0.9.0'
+gem 'grape-entity', '~> 0.4.4'
+
 group :development, :test do
   gem 'rspec-rails', '>= 3.1.0'
   gem 'factory_girl_rails', '>= 4.5.0'
