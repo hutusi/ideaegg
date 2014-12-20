@@ -41,6 +41,7 @@ class User < ActiveRecord::Base
 
   # accessors
   attr_accessor :login
+  alias_attribute :private_token, :authentication_token
 
   # associations
   has_many :ideas, dependent: :destroy
@@ -53,14 +54,14 @@ class User < ActiveRecord::Base
     },
     :format => { with: /\A[a-zA-Z]+[a-zA-Z0-9]+\z/,
     message: "begin with letters and only allows letters or digits"  },
-    :length => { minimum: 5, maximum: 30 }
+    :length => { minimum: 2, maximum: 30 }
   validates :fullname, :length => { maximum: 120 }
   validates :fullname, :presence => true, :on => :update
 
   #
   # Callbacks
   #
-  before_save :autofill_fullname, :downcase_username
+  before_save :autofill_fullname, :downcase_username, :ensure_authentication_token
 
   #
   # Class methods
@@ -105,6 +106,10 @@ class User < ActiveRecord::Base
     get_up_voted(Idea)
   end
 
+  def ensure_authentication_token
+    self.authentication_token ||= generate_authentication_token
+  end
+
   private
     def autofill_fullname
       self.fullname = self.username if self.fullname.blank?
@@ -112,5 +117,12 @@ class User < ActiveRecord::Base
 
     def downcase_username
       self.username && self.username.downcase!
+    end
+
+    def generate_authentication_token
+      loop do
+        token = Devise.friendly_token
+        break token unless User.where(authentication_token: token).first
+      end
     end
 end

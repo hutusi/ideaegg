@@ -40,7 +40,7 @@ describe User do
     it { should validate_presence_of :username }
     # it { should validate_presence_of :fullname }
 
-    it { should ensure_length_of(:username).is_at_least(5).is_at_most(30) }
+    it { should ensure_length_of(:username).is_at_least(2).is_at_most(30) }
     it { should ensure_length_of(:fullname).is_at_most(120) }
   end
 
