@@ -4,4 +4,9 @@ module SessionsHelper
       redirect_to sign_in_url, notice: 'Please sign in.'
     end
   end
+
+  def authenticate_user(login, password)
+    user = User.by_login(login)
+    (user.valid_password?(password) ? user : nil) unless user.nil?
+  end
 end

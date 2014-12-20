@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  # API
+  mount API::API => '/api'
+
   # root path
   authenticated :user do
     root to: "ideas#index" #, as: :authenticated_root

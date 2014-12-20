@@ -57,24 +57,40 @@ class User < ActiveRecord::Base
   validates :fullname, :length => { maximum: 120 }
   validates :fullname, :presence => true, :on => :update
 
-  # callbacks
+  #
+  # Callbacks
+  #
   before_save :autofill_fullname, :downcase_username
 
+  #
+  # Class methods
+  #
+  class << self
+    def by_login(login)
+      where('lower(username) = :value OR lower(email) = :value',
+            value: login.to_s.downcase).first
+    end
+
+    def find_for_database_authentication(warden_conditions)
+      conditions = warden_conditions.dup
+      if login = conditions.delete(:login)
+        where(conditions).where(["lower(username) = :value OR lower(email) = :value",
+                                 { :value => login.downcase }]).first
+      else
+        where(conditions).first
+      end
+    end
+  end
+
+  #
+  # Instance methods
+  #
   def login=(login)
     @login = login
   end
 
   def login
     @login || self.username || self.email
-  end
-
-  def self.find_for_database_authentication(warden_conditions)
-    conditions = warden_conditions.dup
-    if login = conditions.delete(:login)
-      where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
-    else
-      where(conditions).first
-    end
   end
 
   def all_followers
