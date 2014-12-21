@@ -5,23 +5,26 @@ module API
     version 'v1', using: :path
     format :json
 
-    helpers do
-      def unauthorized!
-        render_api_error!('401 Unauthorized', 401)
-      end
+    helpers APIHelpers
+    helpers SessionsHelper
 
-      def render_api_error!(message, status)
-        error!({'message' => message}, status)
+    post "/sign_up" do
+      user = User.new(:username => params[:username],
+                      :email => params[:email],
+                      :password => params[:password],
+                      :password_confirmation => params[:password_confirmation])
+      if user.save
+        present user, with: Entities::UserLogin
+      else
+        render_validation_error!(user)
       end
     end
 
-    helpers SessionsHelper
-
-    post "/signin" do
+    post "/sign_in" do
       user = authenticate_user(params[:login], params[:password])
 
       return unauthorized! unless user
-      present user, with: Entities::UserBasic
+      present user, with: Entities::UserLogin
     end
   end
 end
