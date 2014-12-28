@@ -9,5 +9,6 @@ module API
     helpers SessionsHelper
 
     mount Users
+    mount Ideas
   end
 end
