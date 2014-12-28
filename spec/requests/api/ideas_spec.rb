@@ -26,4 +26,79 @@ describe API::API, api: true  do
       end
     end
   end
+
+  describe "POST /ideas" do
+    before { @idea_attributes = FactoryGirl.attributes_for(:idea, :title => 'test') }
+
+    context "when unauthenticated" do
+      it "should return authentication error" do
+        post api("/ideas")
+        expect(response.status).to eq 401
+      end
+    end
+
+    context "invalid parameters" do
+      it "should return a 400 error if title not given" do
+        post api("/ideas", user)
+        expect(response.status).to eq 400
+      end
+    end
+
+    context "valid parameters" do
+      it "should respond with 201 on success" do
+        post api("/ideas", user), @idea_attributes
+        expect(response.status).to eq 201
+        expect(json_response['title']).to eq @idea_attributes[:title]
+      end
+    end
+  end
+
+  describe "PUT /ideas/:id" do
+    before { idea }
+
+    context ".unauthenticated" do
+      it "should return authentication error" do
+        put api("/ideas/#{idea.id}")
+        expect(response.status).to eq 401
+      end
+
+      it "should return authentication error when not the author" do
+        put api("/ideas/#{idea.id}", FactoryGirl.create(:user))
+        expect(response.status).to eq 401
+      end
+    end
+
+    context "valid parameters" do
+      before { @idea_attributes = FactoryGirl.attributes_for(:idea, :title => 'test') }
+
+      it "should respond with 200 on success" do
+        put api("/ideas/#{idea.id}", user), @idea_attributes
+        expect(response.status).to eq 200
+        expect(json_response['title']).to eq @idea_attributes[:title]
+      end
+    end
+  end
+
+  describe "DELETE /ideas/:id" do
+    before { idea }
+
+    context "unauthenticated" do
+      it "should return authentication error" do
+        delete api("/ideas/#{idea.id}")
+        expect(response.status).to eq 401
+      end
+
+      it "should return authentication error when not the author" do
+        delete api("/ideas/#{idea.id}", FactoryGirl.create(:user))
+        expect(response.status).to eq 401
+      end
+    end
+
+    context "authenticated" do
+      it "should respond with 200 on success" do
+        delete api("/ideas/#{idea.id}", user)
+        expect(response.status).to eq 200
+      end
+    end
+  end
 end

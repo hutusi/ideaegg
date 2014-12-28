@@ -16,6 +16,19 @@ module API
       render_api_error!('401 Unauthorized', 401)
     end
 
+    def bad_request!(attribute)
+      message = ["400 (Bad request)"]
+      message << "\"" + attribute.to_s + "\" not given"
+      render_api_error!(message.join(' '), 400)
+    end
+
+    def not_found!(resource = nil)
+      message = ["404"]
+      message << resource if resource
+      message << "Not Found"
+      render_api_error!(message.join(' '), 404)
+    end
+
     def render_validation_error!(model)
       unless model.valid?
         render_api_error!(model.errors.messages || '400 Bad Request', 400)
@@ -33,7 +46,29 @@ module API
 
       paginated
     end
-    
+
+    def required_attributes!(keys)
+      keys.each do |key|
+        bad_request!(key) unless params[key].present?
+      end
+    end
+
+    def attributes_for_keys(keys)
+      attrs = {}
+
+      keys.each do |key|
+        if params[key].present? or (params.has_key?(key) and params[key] == false)
+          attrs[key] = params[key]
+        end
+      end
+
+      ActionController::Parameters.new(attrs).permit!
+    end
+
+    def authenticated_as_current_user(user)
+      return unauthorized! unless user == current_user
+    end
+
     private
 
       def add_pagination_headers(paginated, per_page)
