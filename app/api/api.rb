@@ -7,6 +7,7 @@ module API
 
     helpers APIHelpers
     helpers SessionsHelper
+    helpers IdeasHelper
 
     mount Users
     mount Ideas

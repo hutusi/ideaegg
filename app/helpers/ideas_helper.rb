@@ -27,4 +27,18 @@ module IdeasHelper
            class: 'btn btn-default like-button'
     end
   end
+
+  def like_idea(liker, idea)
+    unless liker.liked? idea
+      liker.likes idea
+      liker.increment!(:liked_ideas_count)
+    end
+  end
+
+  def unlike_idea(liker, idea)
+    if liker.liked? idea
+      idea.unliked_by liker
+      liker.decrement!(:liked_ideas_count)
+    end
+  end
 end

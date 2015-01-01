@@ -101,4 +101,51 @@ describe API::API, api: true  do
       end
     end
   end
+
+  describe "POST /ideas/:id/like" do
+    before { idea }
+
+    context "unauthenticated" do
+      it "should return authentication error" do
+        post api("/ideas/#{idea.id}/like")
+        expect(response.status).to eq 401
+      end
+    end
+
+    context "authenticated" do
+      let(:liker) { FactoryGirl.create(:user) }
+
+      it "should respond with 201 on success" do
+        post api("/ideas/#{idea.id}/like", liker)
+        expect(response.status).to eq 201
+        expect(liker.liked? idea).to be true
+      end
+    end
+  end
+
+  describe "DELETE /ideas/:id/like" do
+    before { idea }
+
+    context "unauthenticated" do
+      it "should return authentication error" do
+        delete api("/ideas/#{idea.id}/like")
+        expect(response.status).to eq 401
+      end
+    end
+
+    context "authenticated" do
+      let(:liker) { FactoryGirl.create(:user) }
+
+      it "should respond with 200 on success" do
+        post api("/ideas/#{idea.id}/like", liker)
+        expect(response.status).to eq 201
+        expect(liker.liked? idea).to be true
+
+        delete api("/ideas/#{idea.id}/like", liker)
+        expect(response.status).to eq 200
+        expect(liker.liked? idea).to be false
+      end
+
+    end
+  end
 end

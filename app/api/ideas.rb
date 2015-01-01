@@ -67,6 +67,32 @@ module API
 
         render_validation_error!(@idea) unless @idea.destroy
       end
+
+      # Like idea
+      #
+      # Parameters:
+      #   id (required)
+      # Example Request
+      #   POST /ideas/:id/like
+      post ":id/like" do
+        @idea = Idea.find(params[:id])
+        not_found!('Idea') unless @idea
+
+        like_idea(current_user, @idea)
+      end
+
+      # Unlike idea
+      #
+      # Parameters:
+      #   id (required)
+      # Example Request
+      #   DELETE /ideas/:id/like
+      delete ":id/like" do
+        @idea = Idea.find(params[:id])
+        not_found!('Idea') unless @idea
+
+        unlike_idea(current_user, @idea)
+      end
     end
   end
 end

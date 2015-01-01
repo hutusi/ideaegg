@@ -1,4 +1,6 @@
 class IdeasController < ApplicationController
+  include IdeasHelper
+
   before_action :get_idea, only: [:show, :edit, :update, :destroy, :like, :unlike]
   before_action :signed_in_user, only: [:new, :create, :edit, :update, :destroy, :like, :unlike]
   before_action :correct_user, only: [:edit, :update, :destroy]
@@ -50,10 +52,7 @@ class IdeasController < ApplicationController
   def like
     respond_to do |format|
       liker = User.find(params[:liker_id])
-      unless liker.liked? @idea
-        liker.likes @idea
-        liker.increment!(:liked_ideas_count)
-      end
+      like_idea(liker, @idea)
       format.html { redirect_to @idea, notice: 'Like successfully.' }
       format.json { head :no_content }
     end
@@ -62,10 +61,7 @@ class IdeasController < ApplicationController
   def unlike
     respond_to do |format|
       liker = User.find(params[:liker_id])
-      if liker.liked? @idea
-        @idea.unliked_by liker
-        liker.decrement!(:liked_ideas_count)
-      end
+      unlike_idea(liker, @idea)
       format.html { redirect_to @idea, notice: 'Unlike successfully.' }
       format.json { head :no_content }
     end
