@@ -1,0 +1,9 @@
+v 2.1.0
+  - Restful api (powered by grape)
+
+v 2.0.0
+  - User registration, sign in, sign out
+  - New, edit, delete idea
+  - Follow/ unfollow others
+  - Like/ unlike ideas
+  - Comment on ideas
