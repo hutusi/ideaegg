@@ -4,6 +4,9 @@ module API
       expose :username, :fullname, :email
     end
 
+    class User < UserBasic
+    end
+
     class UserLogin < UserBasic
       expose :private_token
     end

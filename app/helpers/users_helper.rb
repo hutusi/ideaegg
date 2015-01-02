@@ -23,4 +23,12 @@ module UsersHelper
               class: 'btn btn-default btn-follow-unfollow'
     end
   end
+
+  def follow_other(follower, followee)
+    follower.follow(followee)
+  end
+
+  def unfollow_other(follower, followee)
+    follower.stop_following(followee)
+  end
 end

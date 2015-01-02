@@ -17,12 +17,32 @@ describe API::API, api: true  do
     end
 
     context "when authenticated" do
-      it "should return an array of projects" do
+      it "should return an array of ideas" do
         get api("/ideas", user)
         expect(response.status).to eq 200
         expect(json_response).to be_an Array
         expect(json_response.first['title']).to eq idea.title
         expect(json_response.first['author']['username']).to eq user.username
+      end
+    end
+  end
+
+  describe "GET /ideas/:id" do
+    before { idea }
+
+    context "when unauthenticated" do
+      it "should return authentication error" do
+        get api("/ideas/#{idea.id}")
+        expect(response.status).to eq 401
+      end
+    end
+
+    context "when authenticated" do
+      it "should return specific idea" do
+        get api("/ideas/#{idea.id}", user)
+        expect(response.status).to eq 200
+        expect(json_response['title']).to eq idea.title
+        expect(json_response['author']['username']).to eq user.username
       end
     end
   end

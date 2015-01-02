@@ -16,6 +16,18 @@ module API
         present @ideas, with: Entities::Idea
       end
 
+      # Get a specific idea
+      #
+      # Parameters:
+      #   id (required)
+      #
+      # Example Request:
+      #   GET /ideas/:id
+      get ":id" do
+        @idea = Idea.find(params[:id])
+        present @idea, with: Entities::Idea
+      end
+
       # Create new idea
       #
       # Parameters:
