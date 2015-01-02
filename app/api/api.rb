@@ -12,6 +12,7 @@ module API
 
     mount Users
     mount Ideas
+    mount Comments
 
     post "/sign_up" do
       user = User.new(:username => params[:username],

@@ -37,8 +37,9 @@ module API
       #   POST /ideas
       post do
         required_attributes! [:title, :content]
-        attrs = attributes_for_keys([:title, :content]).merge(user_id: current_user.id)
-        @idea = Idea.new(attrs)
+        attrs = attributes_for_keys([:title, :content])
+        
+        @idea = current_user.ideas.build(attrs)
         if @idea.save
           present @idea, with: Entities::Idea
         else

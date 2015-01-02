@@ -69,6 +69,7 @@ describe API::API, api: true  do
         post api("/ideas", user), @idea_attributes
         expect(response.status).to eq 201
         expect(json_response['title']).to eq @idea_attributes[:title]
+        expect(json_response['author']['username']).to eq user.username
       end
     end
   end

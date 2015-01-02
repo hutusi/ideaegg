@@ -30,6 +30,7 @@ class Comment < ActiveRecord::Base
 
   # NOTE: Comments belong to a user
   belongs_to :user, :counter_cache => true
+  alias_attribute :commentator, :user
 
   # Helper class method that allows you to build a comment
   # by passing a commentable object, a user_id, and comment text

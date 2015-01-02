@@ -21,4 +21,10 @@ FactoryGirl.define do
     user
     body "Hello"
   end
+
+  factory :idea_comment, class: "Comment" do
+    user
+    association :commentable, :factory => :idea
+    body "Hello"
+  end
 end
