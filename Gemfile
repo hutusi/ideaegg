@@ -76,6 +76,9 @@ gem 'qiniu', '~> 6.4.0'
 gem 'grape', '~> 0.9.0'
 gem 'grape-entity', '~> 0.4.4'
 
+# markdown
+gem 'redcarpet', '~> 3.2.2'
+
 group :development, :test do
   gem 'rspec-rails', '>= 3.1.0'
   gem 'factory_girl_rails', '>= 4.5.0'
