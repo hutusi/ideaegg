@@ -1,5 +1,9 @@
 # Ideaegg API
 
+## Resources
+
+- [Ideas](ideas.md)
+
 ## Introduction
 
 All API requests require authentication. You need to pass a `private_token` parameter by URL or header. If passed as header, the header name must be "PRIVATE-TOKEN" (capital and with dash instead of underscore). You can find or reset your private token in your profile.

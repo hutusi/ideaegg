@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   # help
   get 'help' => 'help#index'
+  get 'help/:category/:file'  => 'help#show', as: :help_page
 
   # root path
   authenticated :user do
