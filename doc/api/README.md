@@ -2,7 +2,9 @@
 
 ## Resources
 
+- [Sessions](sessions.md)
 - [Ideas](ideas.md)
+- [Users](users.md)
 
 ## Introduction
 
