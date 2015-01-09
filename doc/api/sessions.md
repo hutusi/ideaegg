@@ -1,4 +1,4 @@
-# Session
+# Sessions
 
 ## Sign up
 
