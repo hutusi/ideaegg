@@ -53,7 +53,7 @@ GET /ideas/:id
 
 Parameters:
 
-- `id` (required) - The ID of a idea
+- `id` (required) - The ID of an idea
 
 ```json
 {
@@ -94,9 +94,9 @@ PUT /ideas/:id
 
 Parameters:
 
-- `id` (required) - The ID of a idea
-- `title` (optional) - new idea title
-- `content` (optional) - new idea content
+- `id` (required) - The ID of an idea
+- `title` (optional) - new title
+- `content` (optional) - new content
 
 ## Delete idea
 
@@ -108,7 +108,7 @@ DELETE /ideas/:id
 
 Parameters:
 
-- `id` (required) - The ID of a idea
+- `id` (required) - The ID of an idea
 
 ## Like idea
 
@@ -120,7 +120,7 @@ POST /ideas/:id/like
 
 Parameters:
 
-- `id` (required) - The ID of a idea
+- `id` (required) - The ID of an idea
 
 ## Unlike idea
 
@@ -132,4 +132,4 @@ DELETE /ideas/:id/like
 
 Parameters:
 
-- `id` (required) - The ID of a idea
+- `id` (required) - The ID of an idea
