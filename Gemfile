@@ -79,6 +79,9 @@ gem 'grape-entity', '~> 0.4.4'
 # markdown
 gem 'redcarpet', '~> 3.2.2'
 
+# tag
+gem 'acts-as-taggable-on', '~> 3.4'
+
 group :development, :test do
   gem 'rspec-rails', '>= 3.1.0'
   gem 'factory_girl_rails', '>= 4.5.0'
