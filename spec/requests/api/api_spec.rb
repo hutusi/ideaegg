@@ -38,4 +38,23 @@ describe API::API do
       expect(response.status).to eq 401
     end
   end
+
+  describe "GET /app_setting" do
+    context "when unauthenticated" do
+      it "should return authentication error" do
+        get api("/app_setting")
+        expect(response.status).to eq 401
+      end
+    end
+
+    context "when authenticated" do
+      it "should return an array of ideas" do
+        get api_with_ios_key("/app_setting")
+        expect(response.status).to eq 200
+        expect(json_response['qiniu']['access_key']).to eq Settings['qiniu']['access_key']
+        expect(json_response['qiniu']['secret_key']).to eq Settings['qiniu']['secret_key']
+        expect(json_response['qiniu']['bucket']).to eq Settings['qiniu']['bucket']
+      end
+    end
+  end
 end

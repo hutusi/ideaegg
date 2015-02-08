@@ -32,5 +32,14 @@ module API
       return unauthorized! unless user
       present user, with: Entities::UserLogin
     end
+
+    get "/app_setting" do
+      authenticate_as_ios!
+      
+      { qiniu: { access_key: Settings['qiniu']['access_key'],
+                 secret_key: Settings['qiniu']['secret_key'],
+                 bucket: Settings['qiniu']['bucket'] }
+      }
+    end
   end
 end

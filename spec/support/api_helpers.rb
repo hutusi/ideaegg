@@ -28,6 +28,15 @@ module ApiSpecHelpers
     "&private_token=#{user.private_token}" : "")
   end
 
+  def api_with_ios_key(path)
+    "/api/v1#{path}" +
+
+    # Normalize query string
+    (path.index('?') ? '' : '?') +
+
+    "&private_token=#{Settings['ios_app_key']}" 
+  end
+
   def json_response
     JSON.parse(response.body)
   end

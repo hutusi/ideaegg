@@ -12,6 +12,15 @@ module API
       unauthorized! unless current_user
     end
 
+    def ios_app?
+      private_token = (params[PRIVATE_TOKEN_PARAM] || env[PRIVATE_TOKEN_HEADER]).to_s
+      private_token == Settings['ios_app_key']
+    end
+
+    def authenticate_as_ios!
+      unauthorized! unless ios_app?
+    end
+
     def unauthorized!
       render_api_error!('401 Unauthorized', 401)
     end
