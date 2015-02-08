@@ -14,7 +14,7 @@ module Ideaegg
 
     config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
-    
+
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
@@ -27,6 +27,4 @@ end
 
 if File.exists? "#{Rails.root}/config/settings.yml"
   Settings = YAML.load_file("#{Rails.root}/config/settings.yml")[Rails.env]
-else
-  Settings = YAML.load_file("#{Rails.root}/config/settings.heroku.yml")[Rails.env]
 end
