@@ -1,7 +1,7 @@
 class IdeasController < ApplicationController
   include IdeasHelper
 
-  before_action :get_idea, only: [:show, :edit, :update, :destroy, :like, :unlike]
+  before_action :get_idea, only: [:show, :edit, :update, :destroy, :like, :unlike, :tag, :untag]
   before_action :signed_in_user, only: [:new, :create, :edit, :update, :destroy, :like, :unlike]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
@@ -67,6 +67,14 @@ class IdeasController < ApplicationController
     end
   end
 
+  def tag
+    @idea.tag_list.add(params[:tag], parse: true)
+  end
+
+  def untag
+    @idea.tag_list.remove(params[:tag], parse: true)
+  end
+
   protected
 
     def get_idea
@@ -74,7 +82,7 @@ class IdeasController < ApplicationController
     end
 
     def idea_params
-      params.require(:idea).permit(:title, :content)
+      params.require(:idea).permit(:title, :content, :tag_list => [])
     end
 
     def correct_user

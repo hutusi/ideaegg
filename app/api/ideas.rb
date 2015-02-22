@@ -38,7 +38,7 @@ module API
       post do
         required_attributes! [:title, :content]
         attrs = attributes_for_keys([:title, :content])
-        
+
         @idea = current_user.ideas.build(attrs)
         if @idea.save
           present @idea, with: Entities::Idea
@@ -105,6 +105,36 @@ module API
         not_found!('Idea') unless @idea
 
         unlike_idea(current_user, @idea)
+      end
+
+      # Tag idea
+      #
+      # Parameters:
+      #   id (required)
+      #   tag
+      # Example Request
+      #   POST /ideas/:id/tag
+      post ":id/tag" do
+        @idea = Idea.find(params[:id])
+        not_found!('Idea') unless @idea
+
+        @idea.tag_list.add(params[:tag], parse: true)
+        @idea.save
+      end
+
+      # Untag idea
+      #
+      # Parameters:
+      #   id (required)
+      #   tag
+      # Example Request
+      #   POST /ideas/:id/untag
+      post ":id/untag" do
+        @idea = Idea.find(params[:id])
+        not_found!('Idea') unless @idea
+
+        @idea.tag_list.remove(params[:tag], parse: true)
+        @idea.save
       end
     end
   end
