@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150208141836) do
+ActiveRecord::Schema.define(version: 20150224033633) do
 
   create_table "comments", force: true do |t|
     t.integer  "commentable_id"
@@ -59,6 +59,17 @@ ActiveRecord::Schema.define(version: 20150208141836) do
   add_index "ideas", ["cached_votes_up"], name: "index_ideas_on_cached_votes_up"
   add_index "ideas", ["deleted_at"], name: "index_ideas_on_deleted_at"
   add_index "ideas", ["user_id"], name: "index_ideas_on_user_id"
+
+  create_table "stars", force: true do |t|
+    t.integer  "starrable_id"
+    t.string   "starrable_type"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "stars", ["starrable_id", "starrable_type"], name: "index_stars_on_starrable_id_and_starrable_type"
+  add_index "stars", ["user_id"], name: "index_stars_on_user_id"
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"

@@ -21,6 +21,9 @@ class Idea < ActiveRecord::Base
   acts_as_paranoid
   acts_as_taggable
 
+  include ActsAsStarrable
+  acts_as_starrable
+
   # paginates
   paginates_per 8
 

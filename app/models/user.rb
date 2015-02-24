@@ -45,6 +45,7 @@ class User < ActiveRecord::Base
 
   # associations
   has_many :ideas, dependent: :destroy
+  has_many :stars
 
   # validations
   validates :username,
