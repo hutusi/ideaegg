@@ -6,7 +6,8 @@ module ActsAsStarrable
 
   module ClassMethods
     def acts_as_starrable(options={})
-      has_many :stars, :as => :starrable, :dependent => :destroy
+      has_many :stars, :as => :starrable, :dependent => :destroy,
+                       :counter_cache => true
       extend ActsAsStarrable::SingletonMethods
       include ActsAsStarrable::InstanceMethods
     end
@@ -23,12 +24,20 @@ module ActsAsStarrable
       Star.find(:all, :conditions => { :starrable_id => self.id, :starrable_type => self.class.name }).collect(&:user)
     end
 
-    def star!(user)
-      Star.create!( :user => user, :starrable => self )
+    def starred_by?(user)
+      Star.exists?({ :starrable_id => self.id, :starrable_type => self.class.name, :user_id => user.id })
     end
 
-    def unstar!(user)
-      self.stars.find_by_user_id(user.id).delete
+    def starred_by!(user)
+      unless self.starred_by?(user)
+        Star.create!( :user => user, :starrable => self )
+      end
+    end
+
+    def unstarred_by!(user)
+      if self.starred_by?(user)
+        self.stars.find_by_user_id(user.id).delete
+      end
     end
   end
 end

@@ -111,6 +111,10 @@ class User < ActiveRecord::Base
     self.authentication_token ||= generate_authentication_token
   end
 
+  def starred?(starrable)
+    Star.exists?({ :starrable_id => starrable.id, :starrable_type => starrable.class.name, :user_id => self.id })
+  end
+
   private
     def autofill_fullname
       self.fullname = self.username if self.fullname.blank?

@@ -41,4 +41,12 @@ module IdeasHelper
       liker.decrement!(:liked_ideas_count)
     end
   end
+
+  def star_idea(starer, idea)
+    idea.starred_by! starer
+  end
+
+  def unstar_idea(starer, idea)
+    idea.unstarred_by! starer
+  end
 end

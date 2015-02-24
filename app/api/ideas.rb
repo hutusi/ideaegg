@@ -136,6 +136,32 @@ module API
         @idea.tag_list.remove(params[:tag], parse: true)
         @idea.save
       end
+
+      # Star idea
+      #
+      # Parameters:
+      #   id (required)
+      # Example Request
+      #   POST /ideas/:id/star
+      post ":id/star" do
+        @idea = Idea.find(params[:id])
+        not_found!('Idea') unless @idea
+
+        star_idea(current_user, @idea)
+      end
+
+      # Unstar idea
+      #
+      # Parameters:
+      #   id (required)
+      # Example Request
+      #   DELETE /ideas/:id/star
+      delete ":id/star" do
+        @idea = Idea.find(params[:id])
+        not_found!('Idea') unless @idea
+
+        unstar_idea(current_user, @idea)
+      end
     end
   end
 end
