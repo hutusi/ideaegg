@@ -113,8 +113,8 @@ module API
       #   id (required)
       #   tag
       # Example Request
-      #   POST /ideas/:id/tag
-      post ":id/tag" do
+      #   PUT /ideas/:id/tag
+      put ":id/tag" do
         @idea = Idea.find(params[:id])
         not_found!('Idea') unless @idea
 
@@ -128,8 +128,8 @@ module API
       #   id (required)
       #   tag
       # Example Request
-      #   POST /ideas/:id/untag
-      post ":id/untag" do
+      #   PUT /ideas/:id/untag
+      put ":id/untag" do
         @idea = Idea.find(params[:id])
         not_found!('Idea') unless @idea
 

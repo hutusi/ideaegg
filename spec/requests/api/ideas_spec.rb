@@ -169,12 +169,12 @@ describe API::API, api: true  do
     end
   end
 
-  describe "POST /ideas/:id/tag" do
+  describe "PUT /ideas/:id/tag" do
     before { idea }
 
     context "unauthenticated" do
       it "should return authentication error" do
-        post api("/ideas/#{idea.id}/tag")
+        put api("/ideas/#{idea.id}/tag")
         expect(response.status).to eq 401
       end
     end
@@ -184,19 +184,19 @@ describe API::API, api: true  do
       before { @tag_attributes = {:tag => 'hello, world'} }
 
       it "should respond with 201 on success" do
-        post api("/ideas/#{idea.id}/tag", tagger), @tag_attributes
-        expect(response.status).to eq 201
+        put api("/ideas/#{idea.id}/tag", tagger), @tag_attributes
+        expect(response.status).to eq 200
         expect(idea.tag_list).to eq ["hello", "world"]
       end
     end
   end
 
-  describe "POST /ideas/:id/untag" do
+  describe "PUT /ideas/:id/untag" do
     before { idea }
 
     context "unauthenticated" do
       it "should return authentication error" do
-        post api("/ideas/#{idea.id}/untag")
+        put api("/ideas/#{idea.id}/untag")
         expect(response.status).to eq 401
       end
     end
@@ -206,12 +206,12 @@ describe API::API, api: true  do
       before { @tag_attributes = {:tag => 'hello, world'} }
 
       it "should respond with 201 on success" do
-        post api("/ideas/#{idea.id}/tag", tagger), @tag_attributes
-        expect(response.status).to eq 201
+        put api("/ideas/#{idea.id}/tag", tagger), @tag_attributes
+        expect(response.status).to eq 200
         expect(idea.tag_list).to eq ["hello", "world"]
 
-        post api("/ideas/#{idea.id}/untag", tagger), @tag_attributes
-        expect(response.status).to eq 201
+        put api("/ideas/#{idea.id}/untag", tagger), @tag_attributes
+        expect(response.status).to eq 200
         idea.reload
         expect(idea.tag_list).to eq []
       end

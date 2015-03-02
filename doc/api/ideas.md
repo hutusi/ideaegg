@@ -133,3 +133,53 @@ DELETE /ideas/:id/like
 Parameters:
 
 - `id` (required) - The ID of an idea
+
+## Star idea
+
+Star an idea by the authenticated user.
+
+```
+POST /ideas/:id/star
+```
+
+Parameters:
+
+- `id` (required) - The ID of an idea
+
+## Unstar idea
+
+Unstar an idea by the authenticated user.
+
+```
+DELETE /ideas/:id/star
+```
+
+Parameters:
+
+- `id` (required) - The ID of an idea
+
+## Tag idea
+
+Tag an idea by the authenticated user.
+
+```
+PUT /ideas/:id/tag
+```
+
+Parameters:
+
+- `id` (required) - The ID of an idea
+- `tag` (required) - tags, splitted by ',' such as 'software' or 'software, children'
+
+## Untag idea
+
+Untag an idea by the authenticated user.
+
+```
+PUT /ideas/:id/untag
+```
+
+Parameters:
+
+- `id` (required) - The ID of an idea
+- `tag` (required) - tags, splitted by ',' such as 'software' or 'software, children'
