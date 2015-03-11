@@ -32,5 +32,6 @@ FactoryGirl.define do
     sequence(:email) {|n| "john#{n}@ideaegg.me" }
     password '12345678'
     password_confirmation { password }
+    wechat_openid 'xxxxxxxxxx'
   end
 end

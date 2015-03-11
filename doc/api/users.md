@@ -70,6 +70,7 @@ Parameters:
 - `username` (optional) - new username
 - `fullname` (optional) - new fullname
 - `email` (optional) - new email
+- `wechat_openid` - wechat openid
 
 ## Follow user
 

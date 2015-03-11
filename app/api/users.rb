@@ -33,6 +33,7 @@ module API
       #   username
       #   fullname
       #   email
+      #   wechat_openid
       # Example Request
       #   PUT /users/:id
       put ":id" do
@@ -40,7 +41,7 @@ module API
         not_found!('User') unless @user
         authenticated_as_current_user @user
 
-        attrs = attributes_for_keys [:username, :fullname, :email]
+        attrs = attributes_for_keys [:username, :fullname, :email, :wechat_openid]
         if @user.update_attributes(attrs)
           present @user, with: Entities::User
         else

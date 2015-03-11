@@ -9,4 +9,8 @@ module SessionsHelper
     user = User.by_login(login)
     (user.valid_password?(password) ? user : nil) unless user.nil?
   end
+
+  def authenticate_user_by_wechat_openid(openid)
+    User.find_by_wechat_openid(openid)
+  end
 end
