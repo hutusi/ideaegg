@@ -100,6 +100,10 @@ end
 group :development do
   gem 'annotate'
   gem 'pry-rails'
+
+  # Use Capistrano for deployment
+  gem 'capistrano'
+  gem 'capistrano-rails'
 end
 
 group :test do
