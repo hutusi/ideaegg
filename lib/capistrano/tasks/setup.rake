@@ -27,6 +27,17 @@ namespace :setup do
     end
   end
 
+  desc "Reset the database pk."
+  task :reset_pk do
+    on roles(:app) do
+      within "#{current_path}" do
+        with rails_env: :production do
+          execute :rake, "ideaegg:reset_pk"
+        end
+      end
+    end
+  end
+
   desc "Symlinks config files for Nginx and Unicorn."
   task :symlink_config do
     on roles(:app) do
