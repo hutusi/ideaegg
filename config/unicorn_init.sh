@@ -10,7 +10,7 @@ unicorn_pidfile="$APP_ROOT/tmp/pids/unicorn.pid"
 unicorn_config="$APP_ROOT/config/unicorn.rb"
 RAILS_ENV="production"
 CMD="bundle exec unicorn_rails -D -c $unicorn_config -E $RAILS_ENV"
-AS_USER=john
+AS_USER=deploy
 #INIT_CONF=$APP_ROOT/config/init.conf
 action="$1"
 set -u

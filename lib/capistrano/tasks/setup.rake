@@ -9,6 +9,13 @@ namespace :setup do
     end
   end
 
+  desc "Upload database dump file."
+  task :upload_dump do
+    on roles(:app) do
+      upload! StringIO.new(File.read("tmp/database.dump")), "#{shared_path}/tmp/database.dump"
+    end
+  end
+
   desc "Seed the database."
   task :seed_db do
     on roles(:app) do
