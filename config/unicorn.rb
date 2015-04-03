@@ -1,6 +1,20 @@
-worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
+root = "/var/www/ideaegg/current"
+working_directory root
+pid "#{root}/tmp/pids/unicorn.pid"
+stderr_path "#{root}/log/unicorn.log"
+stdout_path "#{root}/log/unicorn.log"
+
+listen "#{root}/tmp/sockets/unicorn.ideaegg.sock"
+
+worker_processes 3
 timeout 15
 preload_app true
+
+# Force the bundler gemfile environment variable to
+# reference the capistrano "current" symlink
+before_exec do |_|
+  ENV["BUNDLE_GEMFILE"] = File.join(root, 'Gemfile')
+end
 
 before_fork do |server, worker|
   Signal.trap 'TERM' do

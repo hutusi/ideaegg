@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'https://ruby.taobao.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -100,6 +100,11 @@ end
 group :development do
   gem 'annotate'
   gem 'pry-rails'
+
+  # Use Capistrano for deployment
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
 end
 
 group :test do
