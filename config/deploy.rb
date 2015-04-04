@@ -3,7 +3,7 @@ lock '3.4.0'
 
 set :application, 'ideaegg'
 set :repo_url, 'git@gitcan.com:hutusi/ideaegg.git'
-set :branch, 'deploy'
+set :branch, 'master'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
