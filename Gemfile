@@ -75,6 +75,7 @@ gem 'qiniu', '~> 6.4.0'
 # api
 gem 'grape', '~> 0.9.0'
 gem 'grape-entity', '~> 0.4.4'
+gem 'grape-kaminari'
 
 # markdown
 gem 'redcarpet', '~> 3.2.2'

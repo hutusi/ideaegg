@@ -1,9 +1,13 @@
 module API
   # Comments API
   class Comments < Grape::API
+    include Grape::Kaminari
+    
     before { authenticate! }
 
     resource :ideas do
+      paginate per_page: 10, max_per_page: 100
+
       # Get a comments list of an idea
       #
       # Parameters:

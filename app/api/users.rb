@@ -1,9 +1,13 @@
 module API
   # Users API
   class Users < Grape::API
+    include Grape::Kaminari
+
     before { authenticate! }
 
     resource :users do
+      paginate per_page: 10, max_per_page: 100
+      
       # Get a users list
       #
       # Parameters:

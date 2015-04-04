@@ -28,13 +28,20 @@ module ApiSpecHelpers
     "&private_token=#{user.private_token}" : "")
   end
 
+  def api_with_page(path, page, per_page, user = nil)
+    api(path, user) +
+
+    # Append paginate
+    "&page=#{page}&per_page=#{per_page}"
+  end
+
   def api_with_ios_key(path)
     "/api/v1#{path}" +
 
     # Normalize query string
     (path.index('?') ? '' : '?') +
 
-    "&private_token=#{Settings['ios_app_key']}" 
+    "&private_token=#{Settings['ios_app_key']}"
   end
 
   def json_response

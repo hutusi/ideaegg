@@ -1,9 +1,13 @@
 module API
   # Ideas API
   class Ideas < Grape::API
+    include Grape::Kaminari
+
     before { authenticate! }
 
     resource :ideas do
+      paginate per_page: 10, max_per_page: 100
+
       # Get a ideas list for authenticated user
       #
       # Parameters:

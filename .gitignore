@@ -24,3 +24,5 @@
 # Ignore settings file
 /config/settings.yml
 /config/database.yml
+
+/.secret

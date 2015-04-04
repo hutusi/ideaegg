@@ -48,13 +48,13 @@ module API
       error!({'message' => message}, status)
     end
 
-    def paginate(relation)
-      per_page  = params[:per_page].to_i
-      paginated = relation.page(params[:page]).per(per_page)
-      add_pagination_headers(paginated, per_page)
-
-      paginated
-    end
+    # def paginate(relation)
+    #   per_page  = params[:per_page].to_i
+    #   paginated = relation.page(params[:page]).per(per_page)
+    #   add_pagination_headers(paginated, per_page)
+    #
+    #   paginated
+    # end
 
     def required_attributes!(keys)
       keys.each do |key|
