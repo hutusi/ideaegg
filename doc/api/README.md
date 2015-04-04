@@ -65,7 +65,58 @@ Return values:
 When listing resources you can pass the following parameters:
 
 - `page` (default: `1`) - page number
-- `per_page` (default: `20`, max: `100`) - number of items to list per page
+- `per_page` (default: `10`, max: `100`) - number of items to list per page
+
+Example
+
+```
+GET http://ideaegg.me/api/v1/ideas?private_token=QVy1PB7sTxfy4pqfZM1U&page=2&per_page=10
+```
+
+- Return
+
+HEADER:
+
+```
+X-Total: 42  
+X-Total-Pages: 5  
+X-Page: 2   
+X-Per-Page: 10   
+X-Next-Page: 3   
+X-Prev-Page: 1     
+```
+
+```json
+[
+  {
+    "id": 4,
+    "title": "hello",
+    "content": "world",
+    "author": {
+      "id": 1,
+      "username": "john_smith",
+      "email": "john@example.com",
+      "fullname": "john_smith"
+    },
+    "created_at": "2013-09-30T13: 46: 02Z",
+    "updated_at": "2013-09-30T13: 46: 02Z"
+  },
+  {
+    "id": 7,
+    "title": "another idea",
+    "content": "test",
+    "author": {
+      "id": 1,
+      "username": "john_smith",
+      "email": "john@example.com",
+      "fullname": "john_smith"
+    },
+    "created_at": "2013-09-30T13: 46: 02Z",
+    "updated_at": "2013-09-30T13: 46: 02Z"
+  }
+]
+```
+
 
 [Link headers](http://www.w3.org/wiki/LinkHeader) are send back with each response. These have `rel` prev/next/first/last and contain the relevant URL. Please use these instead of generating your own urls.
 
