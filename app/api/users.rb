@@ -28,7 +28,7 @@ module API
       #   GET /users/:id
       get ":id" do
         @user = User.find(params[:id])
-        present @user, with: Entities::User
+        present @user, with: Entities::UserFull
       end
 
       # Update user
