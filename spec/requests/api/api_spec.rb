@@ -8,7 +8,7 @@ describe API::API do
       params = FactoryGirl.attributes_for(:user)
       post api('/sign_up'), params
       expect(response.status).to eq 201
-      expect(response.body['private_token']).to_not be_nil
+      expect(json_response['private_token']).to_not be_nil
     end
 
     it 'returns 400 error' do
@@ -24,13 +24,13 @@ describe API::API do
     it 'returns user info when signed by username' do
       post api('/sign_in'), {:login => @user.username, :password => '12345678'}
       expect(response.status).to eq 201
-      expect(response.body['private_token']).to_not be_nil
+      expect(json_response['private_token']).to_not be_nil
     end
 
     it 'returns user info when signed by email' do
       post api('/sign_in'), {:login => @user.email, :password => '12345678'}
       expect(response.status).to eq 201
-      expect(response.body['private_token']).to_not be_nil
+      expect(json_response['private_token']).to_not be_nil
     end
 
     it 'returns 401 error by wrong password' do
@@ -44,13 +44,15 @@ describe API::API do
       params = FactoryGirl.attributes_for(:user)
       post api('/sign_up_by_wechat'), params
       expect(response.status).to eq 201
-      expect(response.body['private_token']).to_not be_nil
+      expect(json_response['private_token']).to_not be_nil
+      expect(json_response['sign_up_type']).to eq "wechat"
     end
     
     it 'returns user info when only pass openid' do
       post api('/sign_up_by_wechat'), {:wechat_openid => 'helloworld'}
       expect(response.status).to eq 201
-      expect(response.body['private_token']).to_not be_nil
+      expect(json_response['private_token']).to_not be_nil
+      expect(json_response['sign_up_type']).to eq "wechat"
     end
 
     it 'returns 400 error' do
@@ -66,7 +68,7 @@ describe API::API do
     it 'returns user info when signed by wechat_id' do
       post api('/sign_in_by_wechat'), {:openid => '12345678'}
       expect(response.status).to eq 201
-      expect(response.body['private_token']).to_not be_nil
+      expect(json_response['private_token']).to_not be_nil
     end
 
     it 'returns 401 error by wrong wechat_id' do

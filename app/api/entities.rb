@@ -5,6 +5,7 @@ module API
     end
 
     class User < UserBasic
+      expose :sign_up_type
     end
 
     class UserLogin < User

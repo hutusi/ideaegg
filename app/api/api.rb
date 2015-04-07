@@ -51,7 +51,8 @@ module API
       :username => username,
       :email => email,
       :password => password,
-      :password_confirmation => password_confirmation)
+      :password_confirmation => password_confirmation,
+      :sign_up_type => "wechat" )
 
       if user.save
         present user, with: Entities::UserLogin
