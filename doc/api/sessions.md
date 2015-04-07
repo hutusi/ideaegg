@@ -27,18 +27,19 @@ Parameters:
 }
 ```
 
+### Sign up by wechat
+
 ```
 POST /sign_up_by_wechat
 ```
 
 Parameters:
 
-- `username` (required) - The username of user
-- `email` (required) - The email of user
-- `password` (required) - User password
-- `password_confirmation` (required) - User password confirmation
 - `openid` (required) - The openid of wechat user
-
+- `username` (optional) - The username of user
+- `email` (optional) - The email of user
+- `password` (optional) - User password
+- `password_confirmation` (optional) - User password confirmation
 
 ```json
 {
@@ -74,6 +75,8 @@ Parameters:
   "created_at": "2012-05-23T08:00:58Z"
 }
 ```
+
+### Sign in by wechat
 
 ```
 POST /sign_in_by_wechat

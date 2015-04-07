@@ -46,6 +46,12 @@ describe API::API do
       expect(response.status).to eq 201
       expect(response.body['private_token']).to_not be_nil
     end
+    
+    it 'returns user info when only pass openid' do
+      post api('/sign_up_by_wechat'), {:wechat_openid => 'helloworld'}
+      expect(response.status).to eq 201
+      expect(response.body['private_token']).to_not be_nil
+    end
 
     it 'returns 400 error' do
       params = FactoryGirl.attributes_for(:user, :email => 'wrongfomat#')

@@ -1,4 +1,5 @@
 Dir["#{Rails.root}/app/api/*.rb"].each {|file| require file}
+require 'securerandom'
 
 module API
   class API < Grape::API
@@ -41,11 +42,16 @@ module API
     end
 
     post "/sign_up_by_wechat" do
+      username = params[:username] || "idea#{Time.now.strftime('%Y%m%d%H%M%S%L')}"
+      email = params[:email] || "#{username}@ideaegg-wechat.com"
+      password = params[:password] || SecureRandom.hex(8)
+      password_confirmation = params[:password_confirmation] || password
+      
       user = User.new(:wechat_openid => params[:openid],
-      :username => params[:username],
-      :email => params[:email],
-      :password => params[:password],
-      :password_confirmation => params[:password_confirmation])
+      :username => username,
+      :email => email,
+      :password => password,
+      :password_confirmation => password_confirmation)
 
       if user.save
         present user, with: Entities::UserLogin
