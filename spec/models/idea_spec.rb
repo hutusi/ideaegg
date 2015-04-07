@@ -14,6 +14,7 @@
 #  visits_count    :integer          default(0)
 #  cached_votes_up :integer          default(0)
 #  stars_count     :integer          default(0)
+#  level           :integer          default(0)
 #
 
 require 'rails_helper'

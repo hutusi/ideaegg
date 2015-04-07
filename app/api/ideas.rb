@@ -41,7 +41,7 @@ module API
       #   POST /ideas
       post do
         required_attributes! [:title, :content]
-        attrs = attributes_for_keys([:title, :content])
+        attrs = attributes_for_keys([:title, :content, :public, :level])
 
         @idea = current_user.ideas.build(attrs)
         if @idea.save
@@ -63,7 +63,7 @@ module API
         not_found!('Idea') unless @idea
         authenticated_as_current_user @idea.author
 
-        attrs = attributes_for_keys [:title, :content]
+        attrs = attributes_for_keys [:title, :content, :public, :level]
         if @idea.update_attributes(attrs)
           present @idea, with: Entities::Idea
         else

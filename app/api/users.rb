@@ -45,7 +45,9 @@ module API
         not_found!('User') unless @user
         authenticated_as_current_user @user
 
-        attrs = attributes_for_keys [:username, :fullname, :email, :wechat_openid]
+        attrs = attributes_for_keys [:username, :fullname, :email, 
+                                 :wechat_openid, :level, :money, :phone_number, 
+                                 :avatar ]
         if @user.update_attributes(attrs)
           present @user, with: Entities::User
         else
