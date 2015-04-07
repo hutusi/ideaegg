@@ -23,6 +23,13 @@
 #  followees_count        :integer          default(0)
 #  followers_count        :integer          default(0)
 #  liked_ideas_count      :integer          default(0)
+#  authentication_token   :string(255)
+#  wechat_openid          :string(255)
+#  phone_number           :string(255)
+#  level                  :integer          default(0)
+#  money                  :integer          default(0)
+#  avatar                 :string(255)
+#  sign_up_type           :string(255)      default("web")
 #
 
 class User < ActiveRecord::Base
