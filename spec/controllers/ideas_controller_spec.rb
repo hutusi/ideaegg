@@ -2,6 +2,22 @@ require 'rails_helper'
 
 describe IdeasController do
   before { @user = FactoryGirl.create(:user) }
+  
+  describe 'GET #index' do
+    it 'redirect to sign in if not signed in' do
+      get :new
+      expect(response).to redirect_to sign_in_url
+    end
+    
+    context 'sign in' do
+      before { login_user @user }
+      
+      it 'should return idea list' do
+        get :index
+        expect(response.status).to eq 200
+      end
+    end
+  end
 
   describe 'GET #new' do
     it 'redirect to sign in if not signed in' do

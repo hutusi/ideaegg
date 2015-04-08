@@ -25,6 +25,29 @@ describe API::API, api: true  do
         expect(json_response.first['author']['username']).to eq user.username
       end
     end
+    
+    context "test level and public" do
+      before do
+        @level_1_idea = FactoryGirl.create(:idea, author: user, level: 1)
+        @private_idea = FactoryGirl.create(:idea, author: user, public: false)
+        @other = FactoryGirl.create(:user)
+        @level_1_user = FactoryGirl.create(:user, level: 1)
+      end
+      
+      it "should return public ideas" do
+        get api("/ideas", @other)
+        expect(response.status).to eq 200
+        expect(json_response).to be_an Array
+        expect(json_response.size).to eq 1
+      end
+      
+      it "should return low level ideas" do
+        get api("/ideas", @level_1_user)
+        expect(response.status).to eq 200
+        expect(json_response).to be_an Array
+        expect(json_response.size).to eq 2
+      end
+    end
   end
 
   describe "GET /ideas/:id" do

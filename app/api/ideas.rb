@@ -16,7 +16,7 @@ module API
       # Example Request:
       #   GET /ideas
       get do
-        @ideas = paginate Idea.all
+        @ideas = paginate Idea.all_public.visible_to(current_user)
         present @ideas, with: Entities::Idea
       end
 

@@ -2,11 +2,11 @@ class IdeasController < ApplicationController
   include IdeasHelper
 
   before_action :get_idea, only: [:show, :edit, :update, :destroy, :like, :unlike, :tag, :untag]
-  before_action :signed_in_user, only: [:new, :create, :edit, :update, :destroy, :like, :unlike]
+  before_action :signed_in_user, only: [:index, :show, :new, :create, :edit, :update, :destroy, :like, :unlike]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @ideas = Idea.order('created_at DESC').page params[:page]
+    @ideas = Idea.all_public.visible_to(current_user).page params[:page]
   end
 
   def show

@@ -38,7 +38,28 @@ class Idea < ActiveRecord::Base
   validates :user_id, presence: true
   validates :title, presence: true, length: { maximum: 140 }
   validates :content, presence: true
-
+  
+  # Scopes
+  default_scope { order(created_at: :desc, id: :desc) }
+  
+  scope :order_created_desc, -> { reorder(created_at: :desc, id: :desc) }
+  scope :order_created_asc, -> { reorder(created_at: :asc, id: :asc) }
+  scope :order_updated_desc, -> { reorder(updated_at: :desc, id: :desc) }
+  scope :order_updated_asc, -> { reorder(updated_at: :asc, id: :asc) }
+  
+  scope :sorted_by_stars, -> { reorder('ideas.stars_count DESC') }
+  scope :sorted_by_comments, -> { reorder('ideas.comments_count DESC') }
+  scope :sorted_by_likes, -> { reorder('ideas.cached_votes_up DESC') }
+  
+  scope :all_public, -> { where(public: true) }
+  scope :visible_to, ->(user) { where('level <= ?', user.level) }
+  
+  # class << self
+  #   def visible_to_current_user
+  #     Idea.all_public.visible_to(current_user)
+  #   end
+  # end
+  
   def all_likers
     votes_for.up.by_type(User).voters
   end
