@@ -18,27 +18,21 @@ Parameters:
     "id": 4,
     "title": "hello",
     "content": "world",
+    "public" : true,
+    "created_at": "2013-09-30T13: 46: 02Z",
+    "updated_at": "2013-09-30T13: 46: 02Z",
+    "comments_count": 0, 
+    "cached_votes_up": 0, 
+    "stars_count": 0,
     "author": {
       "id": 1,
       "username": "john_smith",
-      "email": "john@example.com",
-      "fullname": "john_smith"
-    },
-    "created_at": "2013-09-30T13: 46: 02Z",
-    "updated_at": "2013-09-30T13: 46: 02Z"
+      "fullname": "john_smith",
+      "avatar": "http://qiniu.com/xxx"
+    }
   },
   {
-    "id": 7,
-    "title": "another idea",
-    "content": "test",
-    "author": {
-      "id": 1,
-      "username": "john_smith",
-      "email": "john@example.com",
-      "fullname": "john_smith"
-    },
-    "created_at": "2013-09-30T13: 46: 02Z",
-    "updated_at": "2013-09-30T13: 46: 02Z"
+    ...
   }
 ]
 ```
@@ -60,14 +54,18 @@ Parameters:
   "id": 4,
   "title": "hello",
   "content": "world",
+  "public" : true,
+  "created_at": "2013-09-30T13: 46: 02Z",
+  "updated_at": "2013-09-30T13: 46: 02Z",
+  "comments_count": 0, 
+  "cached_votes_up": 0, 
+  "stars_count": 0,
   "author": {
     "id": 1,
     "username": "john_smith",
-    "email": "john@example.com",
-    "fullname": "john_smith"
-  },
-  "created_at": "2013-09-30T13: 46: 02Z",
-  "updated_at": "2013-09-30T13: 46: 02Z"
+    "fullname": "john_smith",
+    "avatar": "http://qiniu.com/xxx"
+  }
 }
 ```
 
@@ -83,6 +81,8 @@ Parameters:
 
 - `title` (required) - new idea title
 - `content` (required) - new idea content
+- `public` (optional) - true or false
+- `level` (optional) - idea's level, default is 0
 
 ## Update idea
 
@@ -97,6 +97,8 @@ Parameters:
 - `id` (required) - The ID of an idea
 - `title` (optional) - new title
 - `content` (optional) - new content
+- `public` (optional) - true or false
+- `level` (optional) - idea's level, default is 0
 
 ## Delete idea
 

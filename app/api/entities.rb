@@ -11,7 +11,7 @@ module API
     end
     
     class UserFull < User
-      expose :email, :phone_number, :created_at, :sign_up_type
+      expose :email, :phone_number, :created_at, :updated_at, :sign_up_type
     end
 
     class UserLogin < UserFull
