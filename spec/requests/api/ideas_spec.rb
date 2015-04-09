@@ -93,6 +93,13 @@ describe API::API, api: true  do
         expect(response.status).to eq 201
         expect(json_response['title']).to eq @idea_attributes[:title]
         expect(json_response['author']['username']).to eq user.username
+        
+        # test get my ideas
+        get api("/my/ideas", user)
+        expect(response.status).to eq 200
+        expect(json_response).to be_an Array
+        expect(json_response.first['title']).to eq @idea_attributes[:title]
+        expect(json_response.first['author']['username']).to eq user.username
       end
     end
   end
@@ -163,6 +170,13 @@ describe API::API, api: true  do
         post api("/ideas/#{idea.id}/like", liker)
         expect(response.status).to eq 201
         expect(liker.liked? idea).to be true
+        
+        # test get my liked ideas
+        get api("/my/liked_ideas", liker)
+        expect(response.status).to eq 200
+        expect(json_response).to be_an Array
+        expect(json_response.first['title']).to eq idea.title
+        expect(json_response.first['author']['username']).to eq user.username
       end
     end
   end
@@ -258,6 +272,13 @@ describe API::API, api: true  do
         post api("/ideas/#{idea.id}/star", starer)
         expect(response.status).to eq 201
         expect(starer.starred? idea).to be true
+        
+        # test get my starred ideas
+        get api("/my/starred_ideas", starer)
+        expect(response.status).to eq 200
+        expect(json_response).to be_an Array
+        expect(json_response.first['title']).to eq idea.title
+        expect(json_response.first['author']['username']).to eq user.username
       end
     end
   end

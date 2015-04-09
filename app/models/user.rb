@@ -53,6 +53,7 @@ class User < ActiveRecord::Base
   # associations
   has_many :ideas, dependent: :destroy
   has_many :stars
+  has_many :starred_ideas, through: :stars, source: :starrable, source_type: 'Idea'
 
   # validations
   validates :username,

@@ -81,5 +81,39 @@ module API
         unfollow_other(current_user, @user)
       end
     end
+    
+    # Get my ideas
+    #
+    # Parameters:
+    #   
+    # Example Request:
+    #   GET /my/ideas
+    get "/my/ideas" do
+      @ideas = paginate current_user.ideas
+      present @ideas, with: Entities::Idea
+    end
+    
+    # Get my liked ideas
+    #
+    # Parameters:
+    #   
+    # Example Request:
+    #   GET /my/liked_ideas
+    get "/my/liked_ideas" do
+      @ideas = paginate current_user.all_likes
+      present @ideas, with: Entities::Idea
+    end
+    
+    # Get my starred ideas
+    #
+    # Parameters:
+    #   
+    # Example Request:
+    #   GET /my/starred_ideas
+    get "/my/starred_ideas" do
+      @ideas = paginate current_user.starred_ideas
+      present @ideas, with: Entities::Idea
+    end
+    
   end
 end
