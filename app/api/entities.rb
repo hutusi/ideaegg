@@ -36,5 +36,9 @@ module API
       expose :created_at, :updated_at
       expose :commentator, using: Entities::UserBasic
     end
+    
+    class Tag < Grape::Entity
+      expose :id, :name, :taggings_count
+    end
   end
 end

@@ -5,6 +5,7 @@
 - [Sessions](sessions.md)
 - [Ideas](ideas.md)
 - [Users](users.md)
+- [Tags](tags.md)
 
 ## Introduction
 
