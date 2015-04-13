@@ -48,6 +48,30 @@ describe API::API, api: true  do
         expect(json_response.size).to eq 2
       end
     end
+    
+    context "inquire with tag" do
+      before do
+        
+      end
+      
+      it "should return ideas with tag" do
+        idea1 = FactoryGirl.create(:idea)
+        idea2 = FactoryGirl.create(:idea)
+        idea3 = FactoryGirl.create(:idea)
+        
+        put api("/ideas/#{idea1.id}/tag?tag=hello", user)
+        put api("/ideas/#{idea2.id}/tag?tag=world", user)
+        put api("/ideas/#{idea3.id}/tag?tag=hello,world", user)
+        
+        get api("/ideas?tag=hello", user)
+        expect(response.status).to eq 200
+        expect(json_response).to be_an Array
+        expect(json_response.size).to eq 2
+        expect(json_response.first['title']).to eq idea1.title
+        expect(json_response.last['title']).to eq idea2.title
+      end
+      
+    end
   end
 
   describe "GET /ideas/:id" do

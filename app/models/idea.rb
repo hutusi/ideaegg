@@ -63,4 +63,8 @@ class Idea < ActiveRecord::Base
   def all_likers
     votes_for.up.by_type(User).voters
   end
+  
+  def tag_names
+    tags.order('name ASC').pluck(:name)
+  end
 end

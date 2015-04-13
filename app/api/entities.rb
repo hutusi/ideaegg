@@ -26,6 +26,7 @@ module API
       expose :created_at, :updated_at
       expose :comments_count, :cached_votes_up, :stars_count
       expose :author, using: Entities::UserBasic
+      expose :tag_names, as: :tags
     end
     
     class CommentBasic < Grape::Entity

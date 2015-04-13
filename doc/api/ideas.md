@@ -6,11 +6,12 @@ Get a list of ideas by the authenticated user.
 
 ```
 GET /ideas
+GET /ideas?tag=foo
 ```
 
 Parameters:
 
-- None
+- `tag` (optional) - inquire ideas by tag
 
 ```json
 [
@@ -29,6 +30,9 @@ Parameters:
       "username": "john_smith",
       "fullname": "john_smith",
       "avatar": "http://qiniu.com/xxx"
+    },
+    "tags" : {
+      "foo"
     }
   },
   {

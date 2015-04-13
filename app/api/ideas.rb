@@ -4,6 +4,12 @@ module API
     include Grape::Kaminari
 
     before { authenticate! }
+    
+    helpers do
+      def filter_ideas_tag(ideas, tag)
+        ideas.includes(:tags).where('tags.name' => tag)
+      end
+    end
 
     resource :ideas do
       paginate per_page: 10, max_per_page: 100
@@ -15,8 +21,10 @@ module API
       #
       # Example Request:
       #   GET /ideas
+      #   GET /ideas?tag=foo
       get do
         @ideas = paginate Idea.all_public.visible_to(current_user)
+        @ideas = filter_ideas_tag(@ideas, params[:tag]) unless params[:tag].nil?
         present @ideas, with: Entities::Idea
       end
 
