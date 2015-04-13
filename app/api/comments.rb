@@ -51,7 +51,7 @@ module API
       #   id (required)
       #
       # Example Request:
-      #   DELETE /comments/:id/comments
+      #   DELETE /comments/:id
       delete ":id" do
         comment = Comment.find(params[:id])
         not_found!('Comment') unless comment

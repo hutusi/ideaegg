@@ -6,6 +6,7 @@
 - [Ideas](ideas.md)
 - [Users](users.md)
 - [Tags](tags.md)
+- [Comments](comments.md)
 
 ## Introduction
 
