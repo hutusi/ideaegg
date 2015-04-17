@@ -52,6 +52,27 @@ Parameters:
 }
 ```
 
+### Sign up temporary
+
+```
+POST /sign_up_temporary
+```
+
+Parameters:
+
+- None
+
+```json
+{
+  "id": 1,
+  "username": "idea201504172712",
+  "email": "idea201504172712@@ideaegg-wechat.com",
+  "fullname": "idea201504172712",
+  "private_token": "dd34asd13as",
+  "created_at": "2012-05-23T08:00:58Z"
+}
+```
+
 ## Sign in
 
 Sign in to get private token
