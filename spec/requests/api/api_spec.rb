@@ -61,6 +61,16 @@ describe API::API do
       expect(response.status).to eq 400
     end
   end
+  
+  describe "POST /sign_up_temporary" do
+    it 'returns user info' do
+      post api('/sign_up_temporary')
+      expect(response.status).to eq 201
+      expect(json_response['private_token']).to_not be_nil
+      expect(json_response['sign_up_type']).to eq "temporary"
+      expect(json_response['level']).to eq 0
+    end
+  end
 
   describe "POST /sign_in_by_wechat" do
     before { @user = FactoryGirl.create(:user, :wechat_openid => '12345678') }

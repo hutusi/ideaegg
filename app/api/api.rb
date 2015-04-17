@@ -53,7 +53,28 @@ module API
       :email => email,
       :password => password,
       :password_confirmation => password_confirmation,
-      :sign_up_type => "wechat" )
+      :sign_up_type => "wechat",
+      :level => 1 )
+
+      if user.save
+        present user, with: Entities::UserLogin
+      else
+        render_validation_error!(user)
+      end
+    end
+    
+    post "/sign_up_temporary" do
+      username = params[:username] || "idea#{Time.now.strftime('%Y%m%d%H%M%S%L')}"
+      email = params[:email] || "#{username}@ideaegg-wechat.com"
+      password = params[:password] || SecureRandom.hex(8)
+      password_confirmation = params[:password_confirmation] || password
+      
+      user = User.new(:username => username,
+      :email => email,
+      :password => password,
+      :password_confirmation => password_confirmation,
+      :sign_up_type => "temporary",
+      :level => 0 )
 
       if user.save
         present user, with: Entities::UserLogin
